@@ -22,6 +22,7 @@ const sortSelect = document.querySelector("#sort-select");
 let activeCategory = "All";
 let query = "";
 let sortMode = "featured";
+let budgetMode = "any";
 function loadSavedTools() {
   try {
     const stored = JSON.parse(localStorage.getItem("ai-factory:saved-tools") || "[]");
@@ -59,7 +60,8 @@ function renderTools() {
   let filtered = tools.filter(tool => {
     const categoryMatch = activeCategory === "All" || (activeCategory === "Saved" ? savedTools.has(tool.name) : tool.category === activeCategory);
     const searchable = [tool.name,tool.maker,tool.category,tool.description,tool.tags].join(" ").toLowerCase();
-    return categoryMatch && (!normalized || searchable.includes(normalized));
+    const budgetMatch = budgetMode !== "free" || tool.price === "Free tier";
+    return categoryMatch && budgetMatch && (!normalized || searchable.includes(normalized));
   });
   if (sortMode === "az") filtered.sort((a,b) => a.name.localeCompare(b.name));
   else filtered.sort((a,b) => a.featured - b.featured);
@@ -68,6 +70,29 @@ function renderTools() {
   emptyState.hidden = filtered.length !== 0;
   count.textContent = `${filtered.length} ${filtered.length === 1 ? "tool" : "tools"} to explore`;
 }
+document.querySelector("#finder-form").addEventListener("submit", event => {
+  event.preventDefault();
+  const goal = document.querySelector("#finder-goal").value;
+  budgetMode = document.querySelector("#finder-budget").value;
+  query = "";
+  searchInput.value = "";
+  sortMode = "featured";
+  sortSelect.value = "featured";
+  const targetCategory = categoryTabs.querySelector(`[data-category="${goal}"]`);
+  if (targetCategory) targetCategory.click();
+  else categoryTabs.querySelector('[data-category="All"]').click();
+  const matches = tools.filter(tool =>
+    (goal === "All" || tool.category === goal) &&
+    (budgetMode !== "free" || tool.price === "Free tier")
+  );
+  const feedback = document.querySelector("#finder-feedback");
+  feedback.textContent = matches.length
+    ? `Your shortlist has ${matches.length} ${matches.length === 1 ? "tool" : "tools"}. Pricing labels are indicative—confirm current plans on each official site.`
+    : "No exact matches in this starter directory yet. Try another task or show all pricing labels.";
+  document.querySelector("#explore").scrollIntoView({
+    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+  });
+});
 document.querySelector("#hero-search").addEventListener("submit", event => {
   event.preventDefault();
   query = searchInput.value;
