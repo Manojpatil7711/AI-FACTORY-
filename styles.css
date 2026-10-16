@@ -42,3 +42,93 @@
 .show-more-button:hover{border-color:#b5a2ff;background:#252038}
 .show-more-button[hidden]{display:none}
 .show-more-button:focus-visible{outline:2px solid var(--violet);outline-offset:4px}
+
+
+/* Premium readability pass: larger controls, strong hierarchy, quick navigation. */
+.site-header{height:82px}
+.brand{font-size:20px;letter-spacing:-.7px}
+.main-nav{gap:30px;font-size:15px;font-weight:800;color:#f1effb}
+.main-nav a{padding:12px 0;position:relative}
+.main-nav a:hover{color:#c5b6ff}
+.header-cta{padding:13px 18px;font-size:14px;font-weight:800;border-radius:10px}
+.quick-nav{position:sticky;top:0;z-index:4;display:flex;align-items:center;gap:8px;max-width:1240px;margin:0 auto;padding:12px 28px;background:rgba(11,11,18,.96);border-bottom:1px solid #302b43;overflow-x:auto;scrollbar-width:thin;backdrop-filter:blur(16px)}
+.quick-nav button,.quick-nav a{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid #383349;border-radius:9px;background:#171622;color:#eeeafa;padding:12px 15px;font-size:13px;font-weight:900;letter-spacing:.25px;white-space:nowrap;cursor:pointer}
+.quick-nav button:hover,.quick-nav a:hover{border-color:#b5a2ff;background:#27213a}
+.quick-nav .quick-nav-home{background:#b5a2ff;color:#171323;border-color:#b5a2ff}
+.quick-nav button[data-quick-filter="free"]{border-color:#527b69;color:#baf3d5;background:#13231d}
+.hero{min-height:420px;padding-top:48px;padding-bottom:25px}
+.hero h1{font-size:clamp(50px,5.7vw,72px);letter-spacing:-3.8px}
+.hero-description{font-size:18px;line-height:1.65;max-width:530px}
+.hero-search{padding:8px 8px 8px 18px;min-height:68px;border-radius:13px}
+.hero-search input{font-size:16px;padding:12px 4px}
+.hero-search button{font-size:15px;padding:14px 19px;border-radius:9px}
+.popular-searches{font-size:13px;gap:9px}
+.popular-searches button{font-size:13px;font-weight:700;padding:8px 13px}
+.hero-footnote{font-size:11px}
+.section,.category-section{padding-top:56px;padding-bottom:56px}
+.section-heading h2,.manifesto h2{font-size:clamp(32px,4vw,46px);letter-spacing:-1.7px}
+.section-heading p{font-size:16px}
+.results-note{font-size:13px;font-weight:800}
+.explore-controls{align-items:flex-start;flex-direction:column;gap:15px}
+.category-tabs{gap:9px}
+.category-tab{font-size:14px;font-weight:800;padding:11px 16px;border-radius:9px}
+.sort-wrap{font-size:13px;font-weight:700}
+.sort-wrap select{font-size:14px;padding:10px 30px 10px 12px}
+.tool-grid{gap:16px}
+.tool-card{padding:22px;min-height:238px;border-radius:15px}
+.tool-card-top{gap:13px;margin-bottom:17px}
+.tool-logo{width:48px;height:48px;flex-basis:48px;font-size:18px;border-radius:13px}
+.tool-title{font-size:17px;letter-spacing:-.35px}
+.tool-maker{font-size:12px}
+.save-tool{width:36px;height:36px;font-size:19px}
+.tool-description{font-size:14px;line-height:1.7}
+.tool-meta{font-size:12px}
+.visit-link{font-size:14px;font-weight:900;padding:9px 0 0}
+.directory-note{font-size:13px}
+.category-tile{min-height:100px;padding:20px}
+.category-tile b{font-size:16px}
+.category-tile small{font-size:13px}
+.finder-field span{font-size:14px}
+.finder-field select{font-size:14px;padding:14px}
+.finder-submit{font-size:15px;padding:16px}
+.finder-feedback{font-size:12px}
+.menu-toggle{font-size:13px;font-weight:900;letter-spacing:.3px;padding:10px 12px}
+.show-more-button{font-size:15px;font-weight:900;padding:14px 22px;border-radius:11px}
+.trust-strip b{font-size:14px}
+.trust-strip small{font-size:12px}
+@media(max-width:760px){
+  .site-header{height:72px;padding:0 16px}
+  .brand{font-size:18px}
+  .main-nav{font-size:15px}
+  .menu-toggle{display:inline-flex;align-items:center;gap:7px}
+  .quick-nav{padding:10px 14px;gap:7px}
+  .quick-nav button,.quick-nav a{font-size:12px;padding:12px 14px}
+  .hero{display:block;min-height:0;padding:35px 18px 24px}
+  .hero h1{font-size:clamp(44px,12vw,62px);letter-spacing:-2.8px;margin:15px 0}
+  .hero-description{font-size:16px;margin-bottom:20px}
+  .hero-search{gap:7px;padding-left:12px;min-height:60px}
+  .hero-search input{font-size:15px}
+  .hero-search button{font-size:14px;padding:12px}
+  .hero-footnote{margin-top:18px;font-size:10px}
+  .section,.category-section{padding:40px 16px}
+  .section-heading{align-items:flex-start;flex-direction:column;gap:8px;margin-bottom:20px}
+  .section-heading h2{font-size:34px}
+  .category-tab{font-size:13px;padding:10px 13px}
+  .tool-grid{grid-template-columns:1fr;gap:12px}
+  .tool-card{min-height:0;padding:19px}
+  .tool-title{font-size:17px}
+  .tool-description{font-size:14px}
+  .trust-strip{grid-template-columns:1fr 1fr;padding:18px 16px;gap:16px}
+  .trust-strip>div{align-items:flex-start}
+  .trust-strip b{font-size:13px}
+  .trust-strip small{font-size:11px}
+  .category-grid{grid-template-columns:1fr 1fr}
+  .category-tile{padding:14px;gap:9px}
+  .category-tile b{font-size:14px}
+  .category-tile small{font-size:11px}
+}
+@media(max-width:390px){
+  .quick-nav button,.quick-nav a{font-size:11px;padding:11px}
+  .hero-search button{padding:11px 9px}
+  .category-grid{grid-template-columns:1fr}
+}
