@@ -19,3 +19,16 @@
 .finder-feedback{grid-column:1/-1;margin:0;color:#9996ad;font-size:10px;line-height:1.6}
 @media(max-width:760px){.smart-finder{margin:0 18px;padding:23px;grid-template-columns:1fr;gap:20px}.finder-panel{grid-template-columns:1fr}.finder-submit,.finder-feedback{grid-column:auto}}
 @media(prefers-reduced-motion:reduce){.finder-submit{transition:none}}
+
+/* Lightweight legal pages */
+.legal-page{max-width:850px;min-height:65vh;margin:0 auto;padding:76px 28px 88px;color:#b9b7c9}
+.legal-page h1{font-family:var(--display);font-size:clamp(42px,7vw,64px);letter-spacing:-3px;line-height:1.1;color:var(--text);margin:14px 0 10px}
+.legal-page h1 span{background:linear-gradient(100deg,#b8a4ff 5%,#8abaff 55%,#9ce7c0 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.legal-page h2{font-family:var(--display);font-size:19px;letter-spacing:-.4px;color:#f2f0fa;margin:32px 0 8px}
+.legal-page p{font-size:14px;line-height:1.9;margin:0 0 13px}
+.legal-page .legal-updated{font-family:var(--mono);font-size:10px;color:#88859e;margin-bottom:28px}
+.legal-back{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:42px!important;font-size:12px!important}
+.legal-back a,.footer-links a{color:#b8a4ff}
+.legal-back a:hover,.footer-links a:hover{color:#fff}
+.footer-links{display:flex;align-items:center;gap:15px}
+@media(max-width:640px){.legal-page{padding:52px 20px 64px}.legal-page h1{font-size:46px}.legal-page p{font-size:13px}.footer-links{gap:13px}}
