@@ -122,7 +122,7 @@ document.querySelectorAll("[data-search]").forEach(button => button.addEventList
   searchInput.value = button.dataset.search;
   query = button.dataset.search;
   renderTools();
-  document.querySelector("#explore").scrollIntoView({behavior:"smooth"});
+  document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 }));
 categoryTabs.addEventListener("click", event => {
   const button = event.target.closest("[data-category]");
