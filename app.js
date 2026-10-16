@@ -41,6 +41,8 @@ let activeCategory = "All";
 let query = "";
 let sortMode = "featured";
 let budgetMode = "any";
+let showAllTools = false;
+const INITIAL_TOOL_LIMIT = 6;
 function loadSavedTools() {
   try {
     const stored = JSON.parse(localStorage.getItem("ai-factory:saved-tools") || "[]");
@@ -83,15 +85,21 @@ function renderTools() {
   });
   if (sortMode === "az") filtered.sort((a,b) => a.name.localeCompare(b.name));
   else filtered.sort((a,b) => a.featured - b.featured);
-  grid.innerHTML = filtered.map(toolCard).join("");
+  const visibleTools = showAllTools ? filtered : filtered.slice(0, INITIAL_TOOL_LIMIT);
+  grid.innerHTML = visibleTools.map(toolCard).join("");
   grid.hidden = filtered.length === 0;
   emptyState.hidden = filtered.length !== 0;
-  count.textContent = `${filtered.length} ${filtered.length === 1 ? "tool" : "tools"} to explore`;
+  count.textContent = `${filtered.length} ${filtered.length === 1 ? "tool" : "tools"}${filtered.length > visibleTools.length ? ` · showing ${visibleTools.length}` : ""}`;
+  const showMore = document.querySelector("#show-more-tools");
+  showMore.hidden = filtered.length <= INITIAL_TOOL_LIMIT;
+  showMore.setAttribute("aria-expanded", String(showAllTools));
+  showMore.innerHTML = showAllTools ? "Show fewer tools <span aria-hidden=\"true\">↑</span>" : `Show all ${filtered.length} tools <span aria-hidden="true">↓</span>`;
 }
 document.querySelector("#finder-form").addEventListener("submit", event => {
   event.preventDefault();
   const goal = document.querySelector("#finder-goal").value;
   budgetMode = document.querySelector("#finder-budget").value;
+  showAllTools = false;
   query = "";
   searchInput.value = "";
   sortMode = "featured";
@@ -114,13 +122,15 @@ document.querySelector("#finder-form").addEventListener("submit", event => {
 document.querySelector("#hero-search").addEventListener("submit", event => {
   event.preventDefault();
   query = searchInput.value;
+  showAllTools = false;
   renderTools();
   document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 });
-searchInput.addEventListener("input", () => { query = searchInput.value; renderTools(); });
+searchInput.addEventListener("input", () => { query = searchInput.value; showAllTools = false; renderTools(); });
 document.querySelectorAll("[data-search]").forEach(button => button.addEventListener("click", () => {
   searchInput.value = button.dataset.search;
   query = button.dataset.search;
+  showAllTools = false;
   renderTools();
   document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 }));
@@ -128,6 +138,7 @@ categoryTabs.addEventListener("click", event => {
   const button = event.target.closest("[data-category]");
   if (!button) return;
   activeCategory = button.dataset.category;
+  showAllTools = false;
   categoryTabs.querySelectorAll(".category-tab").forEach(tab => {
     const active = tab === button;
     tab.classList.toggle("active", active);
@@ -169,5 +180,10 @@ menuToggle.addEventListener("click", () => {
 nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => {
   nav.classList.remove("open"); menuToggle.setAttribute("aria-expanded","false");
 }));
+document.querySelector("#show-more-tools").addEventListener("click", () => {
+  showAllTools = !showAllTools;
+  renderTools();
+  if (!showAllTools) document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+});
 document.querySelector("#year").textContent = String(new Date().getFullYear());
 renderTools();
