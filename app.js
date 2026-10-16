@@ -151,7 +151,11 @@ document.querySelectorAll("[data-category-jump]").forEach(button => button.addEv
   document.querySelector("#explore").scrollIntoView({behavior:"smooth"});
 }));
 document.querySelector("#reset-filters").addEventListener("click", () => {
-  query = ""; activeCategory = "All"; sortMode = "featured"; searchInput.value = ""; sortSelect.value = "featured";
+  query = ""; activeCategory = "All"; sortMode = "featured"; budgetMode = "any";
+  searchInput.value = ""; sortSelect.value = "featured";
+  document.querySelector("#finder-budget").value = "any";
+  document.querySelector("#finder-goal").value = "All";
+  document.querySelector("#finder-feedback").textContent = "No account needed. Your choices stay in this browser.";
   const allTab = categoryTabs.querySelector('[data-category="All"]');
   allTab.click();
 });
