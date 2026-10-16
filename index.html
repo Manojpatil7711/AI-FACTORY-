@@ -62,6 +62,45 @@
       <div><span class="strip-symbol">◇</span><span><b>Built to grow</b><small>Useful, not overwhelming</small></span></div>
     </section>
 
+    <section class="section explore-section" id="explore">
+      <div class="section-heading">
+        <div><div class="eyebrow section-eyebrow">THE TOOL FLOOR</div><h2>Find your <span>next advantage.</span></h2><p>Explore tools by what you want to get done.</p></div>
+        <div class="results-note" id="results-count" aria-live="polite">12 tools to explore</div>
+      </div>
+      <div class="explore-controls">
+        <div class="category-tabs" id="category-tabs" aria-label="Filter by category">
+          <button class="category-tab active" type="button" data-category="All" aria-pressed="true">All tools</button>
+          <button class="category-tab" type="button" data-category="Writing" aria-pressed="false">Writing</button>
+          <button class="category-tab" type="button" data-category="Design" aria-pressed="false">Design</button>
+          <button class="category-tab" type="button" data-category="Video" aria-pressed="false">Video</button>
+          <button class="category-tab" type="button" data-category="Research" aria-pressed="false">Research</button>
+          <button class="category-tab" type="button" data-category="Coding" aria-pressed="false">Coding</button>
+          <button class="category-tab" type="button" data-category="Productivity" aria-pressed="false">Productivity</button>
+          <button class="category-tab" type="button" data-category="Audio" aria-pressed="false">Audio</button>
+          <button class="category-tab" type="button" data-category="Saved" aria-pressed="false">♥ Saved</button>
+        </div>
+        <label class="sort-wrap"><span>Sort</span><select id="sort-select" aria-label="Sort tools"><option value="featured">Featured</option><option value="az">Name A–Z</option></select></label>
+      </div>
+      <div class="tool-grid" id="tool-grid">
+        <div class="loading-state">Loading your AI toolkit<span> ···</span></div>
+      </div>
+      <div class="show-more-wrap"><button type="button" class="show-more-button" id="show-more-tools" aria-expanded="false">Show all tools <span aria-hidden="true">↓</span></button></div>
+      <div class="empty-state" id="empty-state" hidden><span class="empty-icon">⌕</span><h3>No tools found</h3><p>Try another search or choose a different category.</p><button type="button" id="reset-filters">Reset filters</button></div>
+      <p class="directory-note">Tool availability, pricing and features can change. Always confirm details on the official website.</p>
+    </section>
+
+    <section class="category-section" id="categories">
+      <div class="section-heading compact-heading"><div><div class="eyebrow section-eyebrow">START WITH A TASK</div><h2>What are you here to <span>make?</span></h2></div></div>
+      <div class="category-grid">
+        <button class="category-tile tile-violet" type="button" data-category-jump="Writing"><span class="tile-icon">✎</span><span><b>Write & think</b><small>Drafts, ideas, summaries</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-blue" type="button" data-category-jump="Design"><span class="tile-icon">✦</span><span><b>Design & imagine</b><small>Visuals, layouts, art</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-orange" type="button" data-category-jump="Video"><span class="tile-icon">▶</span><span><b>Make video</b><small>Clips, edits, motion</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-green" type="button" data-category-jump="Coding"><span class="tile-icon">⌘</span><span><b>Build & code</b><small>Ship ideas faster</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-pink" type="button" data-category-jump="Research"><span class="tile-icon">⌕</span><span><b>Research & learn</b><small>Answers with context</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-yellow" type="button" data-category-jump="Productivity"><span class="tile-icon">⤴</span><span><b>Work smarter</b><small>Notes, tasks, workflows</small></span><span class="tile-arrow">↗</span></button>
+      </div>
+    </section>
+
     <section class="smart-finder" id="smart-finder" aria-labelledby="finder-title">
       <div class="finder-intro">
         <div class="eyebrow section-eyebrow">YOUR PERSONAL SHORTLIST</div>
@@ -90,44 +129,6 @@
         <button class="finder-submit" type="submit">Find my shortlist <span aria-hidden="true">→</span></button>
         <p class="finder-feedback" id="finder-feedback" aria-live="polite">No account needed. Your choices stay in this browser.</p>
       </form>
-    </section>
-
-    <section class="section explore-section" id="explore">
-      <div class="section-heading">
-        <div><div class="eyebrow section-eyebrow">THE TOOL FLOOR</div><h2>Find your <span>next advantage.</span></h2><p>Explore tools by what you want to get done.</p></div>
-        <div class="results-note" id="results-count" aria-live="polite">12 tools to explore</div>
-      </div>
-      <div class="explore-controls">
-        <div class="category-tabs" id="category-tabs" aria-label="Filter by category">
-          <button class="category-tab active" type="button" data-category="All" aria-pressed="true">All tools</button>
-          <button class="category-tab" type="button" data-category="Writing" aria-pressed="false">Writing</button>
-          <button class="category-tab" type="button" data-category="Design" aria-pressed="false">Design</button>
-          <button class="category-tab" type="button" data-category="Video" aria-pressed="false">Video</button>
-          <button class="category-tab" type="button" data-category="Research" aria-pressed="false">Research</button>
-          <button class="category-tab" type="button" data-category="Coding" aria-pressed="false">Coding</button>
-          <button class="category-tab" type="button" data-category="Productivity" aria-pressed="false">Productivity</button>
-          <button class="category-tab" type="button" data-category="Audio" aria-pressed="false">Audio</button>
-          <button class="category-tab" type="button" data-category="Saved" aria-pressed="false">♥ Saved</button>
-        </div>
-        <label class="sort-wrap"><span>Sort</span><select id="sort-select" aria-label="Sort tools"><option value="featured">Featured</option><option value="az">Name A–Z</option></select></label>
-      </div>
-      <div class="tool-grid" id="tool-grid">
-        <div class="loading-state">Loading your AI toolkit<span> ···</span></div>
-      </div>
-      <div class="empty-state" id="empty-state" hidden><span class="empty-icon">⌕</span><h3>No tools found</h3><p>Try another search or choose a different category.</p><button type="button" id="reset-filters">Reset filters</button></div>
-      <p class="directory-note">Tool availability, pricing and features can change. Always confirm details on the official website.</p>
-    </section>
-
-    <section class="category-section" id="categories">
-      <div class="section-heading compact-heading"><div><div class="eyebrow section-eyebrow">START WITH A TASK</div><h2>What are you here to <span>make?</span></h2></div></div>
-      <div class="category-grid">
-        <button class="category-tile tile-violet" type="button" data-category-jump="Writing"><span class="tile-icon">✎</span><span><b>Write & think</b><small>Drafts, ideas, summaries</small></span><span class="tile-arrow">↗</span></button>
-        <button class="category-tile tile-blue" type="button" data-category-jump="Design"><span class="tile-icon">✦</span><span><b>Design & imagine</b><small>Visuals, layouts, art</small></span><span class="tile-arrow">↗</span></button>
-        <button class="category-tile tile-orange" type="button" data-category-jump="Video"><span class="tile-icon">▶</span><span><b>Make video</b><small>Clips, edits, motion</small></span><span class="tile-arrow">↗</span></button>
-        <button class="category-tile tile-green" type="button" data-category-jump="Coding"><span class="tile-icon">⌘</span><span><b>Build & code</b><small>Ship ideas faster</small></span><span class="tile-arrow">↗</span></button>
-        <button class="category-tile tile-pink" type="button" data-category-jump="Research"><span class="tile-icon">⌕</span><span><b>Research & learn</b><small>Answers with context</small></span><span class="tile-arrow">↗</span></button>
-        <button class="category-tile tile-yellow" type="button" data-category-jump="Productivity"><span class="tile-icon">⤴</span><span><b>Work smarter</b><small>Notes, tasks, workflows</small></span><span class="tile-arrow">↗</span></button>
-      </div>
     </section>
 
     <section class="manifesto" id="about">
