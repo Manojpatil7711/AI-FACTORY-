@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0b12">
-  <meta name="description" content="Discover, compare, and choose AI tools for writing, design, video, research, coding, and automation. Find the right AI for your next idea.">
-  <meta property="og:title" content="AI FACTORY — Discover. Create. Automate.">
-  <meta property="og:description" content="Your workspace for discovering useful AI tools.">
+  <meta name="description" content="Find 50 curated AI tools for writing, image design, video, research, coding, audio and productivity. Clear categories, quick search and direct official links.">
+  <meta property="og:title" content="AI FACTORY — Find the Right AI Tool Faster">
+  <meta property="og:description" content="Browse 50 curated AI tools with clear categories, quick search and direct official links.">
   <meta property="og:type" content="website">
   <title>AI FACTORY — Discover. Create. Automate.</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -21,21 +21,32 @@
       <span>AI <b>FACTORY</b></span>
     </a>
     <nav class="main-nav" aria-label="Main navigation">
-      <a href="#explore">Explore tools</a>
+      <a href="#explore">Explore Tools</a>
       <a href="#categories">Categories</a>
-      <a href="#about">About</a>
+      <a href="#smart-finder">AI Finder</a>
     </nav>
     <a class="header-cta" href="#explore">Find your AI <span aria-hidden="true">↗</span></a>
-    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false"><span aria-hidden="true">☰</span> MENU</button>
   </header>
 
+  <nav class="quick-nav" aria-label="Quick tool categories">
+    <a class="quick-nav-home" href="#explore">BROWSE AI TOOLS <span aria-hidden="true">↘</span></a>
+    <button type="button" data-quick-category="Writing">WRITING</button>
+    <button type="button" data-quick-category="Design">IMAGE & DESIGN</button>
+    <button type="button" data-quick-category="Video">VIDEO</button>
+    <button type="button" data-quick-category="Research">RESEARCH</button>
+    <button type="button" data-quick-category="Coding">CODING</button>
+    <button type="button" data-quick-category="Productivity">AUTOMATION</button>
+    <button type="button" data-quick-filter="free">FREE TOOLS</button>
+    <button type="button" data-quick-category="Saved">♥ SAVED</button>
+  </nav>
   <main id="main">
     <section class="hero">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-copy">
         <div class="eyebrow"><span class="pulse"></span> YOUR AI ADVANTAGE STARTS HERE</div>
         <h1>Big ideas.<br><span>Better AI.</span></h1>
-        <p class="hero-description">Find the right tools to write, design, build, research and create. Less searching. More making.</p>
+        <p class="hero-description">Search 50 curated AI tools. Find the right one in seconds — not after endless scrolling.</p>
         <form class="hero-search" id="hero-search" role="search">
           <span class="search-icon" aria-hidden="true">⌕</span>
           <label class="visually-hidden" for="search-input">Search AI tools</label>
@@ -55,17 +66,12 @@
       <div class="hero-footnote"><span class="foot-line"></span> A smarter starting point for your AI journey</div>
     </section>
 
-    <section class="trust-strip" aria-label="Platform principles">
-      <div><span class="strip-symbol">✳</span><span><b>Curated discovery</b><small>Tools worth exploring</small></span></div>
-      <div><span class="strip-symbol">⌕</span><span><b>Search that helps</b><small>Find tools by task</small></span></div>
-      <div><span class="strip-symbol">↗</span><span><b>Go straight to source</b><small>Official websites linked</small></span></div>
-      <div><span class="strip-symbol">◇</span><span><b>Built to grow</b><small>Useful, not overwhelming</small></span></div>
-    </section>
+
 
     <section class="section explore-section" id="explore">
       <div class="section-heading">
-        <div><div class="eyebrow section-eyebrow">THE TOOL FLOOR</div><h2>Find your <span>next advantage.</span></h2><p>Explore tools by what you want to get done.</p></div>
-        <div class="results-note" id="results-count" aria-live="polite">12 tools to explore</div>
+        <div><div class="eyebrow section-eyebrow">50 CURATED TOOLS · ONE SIMPLE DIRECTORY</div><h2>Find your <span>next advantage.</span></h2><p>Big, clear categories. Direct official links. Start with a task and go.</p></div>
+        <div class="results-note" id="results-count" aria-live="polite">50 TOOLS</div>
       </div>
       <div class="explore-controls">
         <div class="category-tabs" id="category-tabs" aria-label="Filter by category">
@@ -87,6 +93,13 @@
       <div class="show-more-wrap"><button type="button" class="show-more-button" id="show-more-tools" aria-expanded="false">Show all tools <span aria-hidden="true">↓</span></button></div>
       <div class="empty-state" id="empty-state" hidden><span class="empty-icon">⌕</span><h3>No tools found</h3><p>Try another search or choose a different category.</p><button type="button" id="reset-filters">Reset filters</button></div>
       <p class="directory-note">Tool availability, pricing and features can change. Always confirm details on the official website.</p>
+    </section>
+
+    <section class="trust-strip" aria-label="Platform principles">
+      <div><span class="strip-symbol">✳</span><span><b>Curated discovery</b><small>Tools worth exploring</small></span></div>
+      <div><span class="strip-symbol">⌕</span><span><b>Search that helps</b><small>Find tools by task</small></span></div>
+      <div><span class="strip-symbol">↗</span><span><b>Go straight to source</b><small>Official websites linked</small></span></div>
+      <div><span class="strip-symbol">◇</span><span><b>Built to grow</b><small>Useful, not overwhelming</small></span></div>
     </section>
 
     <section class="category-section" id="categories">
