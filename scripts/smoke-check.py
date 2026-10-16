@@ -20,11 +20,14 @@ class PageParser(HTMLParser):
             self.ids.add(attrs["id"])
         if tag == "script" and attrs.get("src"):
             self.assets.append(attrs["src"])
-        if tag == "link" and attrs.get("rel") == "stylesheet":
+        if tag == "link" and attrs.get("rel") in {"stylesheet", "icon"}:
             self.assets.append(attrs.get("href", ""))
 
 page = PageParser()
 page.feed(html)
+for legal_page in ("privacy.html", "terms.html"):
+    if not (root / legal_page).is_file():
+        raise AssertionError(f"Missing required legal page: {legal_page}")
 required_ids = {
     "main", "search-input", "hero-search", "finder-form", "finder-goal",
     "finder-budget", "finder-feedback", "tool-grid", "results-count",
