@@ -31,7 +31,7 @@ for legal_page in ("privacy.html", "terms.html"):
 required_ids = {
     "main", "search-input", "hero-search", "finder-form", "finder-goal",
     "finder-budget", "finder-feedback", "tool-grid", "results-count",
-    "empty-state", "category-tabs", "sort-select", "reset-filters",
+    "empty-state", "show-more-tools", "category-tabs", "sort-select", "reset-filters",
     "menu-toggle", "year",
 }
 missing = sorted(required_ids - page.ids)
