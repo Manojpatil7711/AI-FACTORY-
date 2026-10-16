@@ -32,3 +32,13 @@
 .legal-back a:hover,.footer-links a:hover{color:#fff}
 .footer-links{display:flex;align-items:center;gap:15px}
 @media(max-width:640px){.legal-page{padding:52px 20px 64px}.legal-page h1{font-size:46px}.legal-page p{font-size:13px}.footer-links{gap:13px}}
+
+
+/* First-screen usability: bring real tools into view quickly. */
+@media(max-width:640px){.hero{padding-top:34px;padding-bottom:20px}.hero-art{display:none}.hero-footnote{margin-top:18px}.trust-strip{padding-top:14px;padding-bottom:14px}.smart-finder{margin-top:24px}}
+@media(min-width:641px){.hero{min-height:430px;padding-top:55px;padding-bottom:28px}}
+.show-more-wrap{display:flex;justify-content:center;margin-top:22px}
+.show-more-button{border:1px solid #51466e;border-radius:9px;padding:11px 17px;background:#1a1727;color:#d8ccff;font-size:12px;font-weight:800;cursor:pointer}
+.show-more-button:hover{border-color:#b5a2ff;background:#252038}
+.show-more-button[hidden]{display:none}
+.show-more-button:focus-visible{outline:2px solid var(--violet);outline-offset:4px}
