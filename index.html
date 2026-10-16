@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0b12">
+  <meta name="description" content="Discover, compare, and choose AI tools for writing, design, video, research, coding, and automation. Find the right AI for your next idea.">
+  <meta property="og:title" content="AI FACTORY — Discover. Create. Automate.">
+  <meta property="og:description" content="Your workspace for discovering useful AI tools.">
+  <meta property="og:type" content="website">
+  <title>AI FACTORY — Discover. Create. Automate.</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="AI FACTORY home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      <span>AI <b>FACTORY</b></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#explore">Explore tools</a>
+      <a href="#categories">Categories</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="header-cta" href="#explore">Find your AI <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> YOUR AI ADVANTAGE STARTS HERE</div>
+        <h1>Big ideas.<br><span>Better AI.</span></h1>
+        <p class="hero-description">Find the right tools to write, design, build, research and create. Less searching. More making.</p>
+        <form class="hero-search" id="hero-search" role="search">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <label class="visually-hidden" for="search-input">Search AI tools</label>
+          <input id="search-input" type="search" placeholder="What do you want to create?" autocomplete="off">
+          <button type="submit">Explore <span aria-hidden="true">→</span></button>
+        </form>
+        <div class="popular-searches"><span>Popular:</span><button type="button" data-search="writing">AI writing</button><button type="button" data-search="video">Video</button><button type="button" data-search="coding">Coding</button><button type="button" data-search="research">Research</button></div>
+      </div>
+      <div class="hero-art" aria-label="AI FACTORY discovery dashboard illustration">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="art-core"><span class="core-spark">✳</span><span>AI</span><small>IDEAS IN MOTION</small></div>
+        <div class="float-card float-card-one"><span class="mini-icon purple">✦</span><span><b>Create</b><small>From idea to output</small></span><span class="card-arrow">↗</span></div>
+        <div class="float-card float-card-two"><span class="mini-icon green">⌘</span><span><b>Automate</b><small>Make work flow</small></span><span class="card-arrow">↗</span></div>
+        <div class="float-card float-card-three"><span class="mini-icon orange">⌕</span><span><b>Discover</b><small>Find your next tool</small></span><span class="card-arrow">↗</span></div>
+        <div class="spark spark-a">✦</div><div class="spark spark-b">✧</div><div class="spark spark-c">·</div>
+      </div>
+      <div class="hero-footnote"><span class="foot-line"></span> A smarter starting point for your AI journey</div>
+    </section>
+
+    <section class="trust-strip" aria-label="Platform principles">
+      <div><span class="strip-symbol">✳</span><span><b>Curated discovery</b><small>Tools worth exploring</small></span></div>
+      <div><span class="strip-symbol">⌕</span><span><b>Search that helps</b><small>Find tools by task</small></span></div>
+      <div><span class="strip-symbol">↗</span><span><b>Go straight to source</b><small>Official websites linked</small></span></div>
+      <div><span class="strip-symbol">◇</span><span><b>Built to grow</b><small>Useful, not overwhelming</small></span></div>
+    </section>
+
+    <section class="section explore-section" id="explore">
+      <div class="section-heading">
+        <div><div class="eyebrow section-eyebrow">THE TOOL FLOOR</div><h2>Find your <span>next advantage.</span></h2><p>Explore tools by what you want to get done.</p></div>
+        <div class="results-note" id="results-count" aria-live="polite">12 tools to explore</div>
+      </div>
+      <div class="explore-controls">
+        <div class="category-tabs" id="category-tabs" aria-label="Filter by category">
+          <button class="category-tab active" type="button" data-category="All">All tools</button>
+          <button class="category-tab" type="button" data-category="Writing">Writing</button>
+          <button class="category-tab" type="button" data-category="Design">Design</button>
+          <button class="category-tab" type="button" data-category="Video">Video</button>
+          <button class="category-tab" type="button" data-category="Research">Research</button>
+          <button class="category-tab" type="button" data-category="Coding">Coding</button>
+          <button class="category-tab" type="button" data-category="Productivity">Productivity</button>
+        </div>
+        <label class="sort-wrap"><span>Sort</span><select id="sort-select" aria-label="Sort tools"><option value="featured">Featured</option><option value="az">Name A–Z</option></select></label>
+      </div>
+      <div class="tool-grid" id="tool-grid">
+        <div class="loading-state">Loading your AI toolkit<span> ···</span></div>
+      </div>
+      <div class="empty-state" id="empty-state" hidden><span class="empty-icon">⌕</span><h3>No tools found</h3><p>Try another search or choose a different category.</p><button type="button" id="reset-filters">Reset filters</button></div>
+      <p class="directory-note">Tool availability, pricing and features can change. Always confirm details on the official website.</p>
+    </section>
+
+    <section class="category-section" id="categories">
+      <div class="section-heading compact-heading"><div><div class="eyebrow section-eyebrow">START WITH A TASK</div><h2>What are you here to <span>make?</span></h2></div></div>
+      <div class="category-grid">
+        <button class="category-tile tile-violet" type="button" data-category-jump="Writing"><span class="tile-icon">✎</span><span><b>Write & think</b><small>Drafts, ideas, summaries</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-blue" type="button" data-category-jump="Design"><span class="tile-icon">✦</span><span><b>Design & imagine</b><small>Visuals, layouts, art</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-orange" type="button" data-category-jump="Video"><span class="tile-icon">▶</span><span><b>Make video</b><small>Clips, edits, motion</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-green" type="button" data-category-jump="Coding"><span class="tile-icon">⌘</span><span><b>Build & code</b><small>Ship ideas faster</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-pink" type="button" data-category-jump="Research"><span class="tile-icon">⌕</span><span><b>Research & learn</b><small>Answers with context</small></span><span class="tile-arrow">↗</span></button>
+        <button class="category-tile tile-yellow" type="button" data-category-jump="Productivity"><span class="tile-icon">⤴</span><span><b>Work smarter</b><small>Notes, tasks, workflows</small></span><span class="tile-arrow">↗</span></button>
+      </div>
+    </section>
+
+    <section class="manifesto" id="about">
+      <div class="manifesto-mark" aria-hidden="true">✳</div>
+      <div><div class="eyebrow">THE AI FACTORY PROMISE</div><h2>Technology should open doors.<br><span>Not add complexity.</span></h2><p>We’re building a clearer way to explore AI: useful starting points, straightforward categories and direct links to the people who make the tools.</p></div>
+      <a href="#explore" class="manifesto-link">Explore the directory <span>→</span></a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="./"><span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span><span>AI <b>FACTORY</b></span></a>
+    <p>Discover. Create. Automate.</p>
+    <div class="footer-bottom"><span>© <span id="year"></span> AI FACTORY</span><span>Independent discovery platform. Not affiliated with listed tools.</span><a href="mailto:hello@aifactory.example" aria-label="Contact AI FACTORY">Contact</a></div>
+  </footer>
+</body>
+</html>
