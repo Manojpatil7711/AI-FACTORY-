@@ -24,6 +24,7 @@ AI FACTORY is a premium-minded AI tools discovery directory. It helps visitors e
 ├── app.js
 ├── favicon.svg
 ├── robots.txt
+├── .nojekyll
 └── README.md
 ```
 
@@ -39,13 +40,13 @@ Then visit `http://localhost:8000`.
 
 ## Free-first deployment plan
 
-1. Keep the repository as the source of truth.
-2. Deploy the static starter through Cloudflare Pages connected to this GitHub repository.
-3. Use a clean project name such as `ai-factory` so the expected Pages URL can be `ai-factory.pages.dev`, if that project name is available.
-4. Do not publish a canonical domain or sitemap URL until the final public URL is confirmed.
-5. Add a custom domain only after checking name availability, brand conflicts and budget.
+- Cloudflare Pages project name: `ai-factory-tools`
+- Intended public URL: `https://ai-factory-tools.pages.dev` (reserved in the connected Cloudflare account; not live until a deployment succeeds)
+- Production branch: `main`
+- Build command: none; this is a static HTML/CSS/JavaScript site
+- Output directory: repository root
 
-Cloudflare project names are unique. A clean URL cannot be guaranteed before checking availability in the account.
+The shortest names `ai-factory` and `aifactory` were not available as clean Pages subdomains, so a descriptive, digit-free name was selected. No custom domain has been purchased or configured.
 
 ## Planned architecture
 
@@ -63,7 +64,7 @@ Tool names, descriptions, pricing and feature availability can change. Verify li
 
 ## Current limitations
 
-This starter is a front-end directory, not yet a production database-backed platform. Search and saved-tool state run in the browser; saved tools are not synced between devices. Admin CRUD, authentication, server APIs, real-time pricing verification, user accounts and monetization integrations are not implemented yet.
+This starter is a front-end directory, not yet a production database-backed platform. Search and saved-tool state run in the browser; saved tools are not synced between devices. Admin CRUD, authentication, server APIs, real-time pricing verification, user accounts and monetization integrations are not implemented yet. Initial Cloudflare Pages project setup is complete, but the first successful deployment still needs to be verified.
 
 ## Brand
 
