@@ -62,6 +62,36 @@
       <div><span class="strip-symbol">◇</span><span><b>Built to grow</b><small>Useful, not overwhelming</small></span></div>
     </section>
 
+    <section class="smart-finder" id="smart-finder" aria-labelledby="finder-title">
+      <div class="finder-intro">
+        <div class="eyebrow section-eyebrow">YOUR PERSONAL SHORTLIST</div>
+        <h2 id="finder-title">Meet your <span>AI match.</span></h2>
+        <p>Tell us what you want to do. We’ll narrow the directory to tools that fit your task and budget.</p>
+      </div>
+      <form class="finder-panel" id="finder-form">
+        <label class="finder-field"><span>What do you want to do?</span>
+          <select id="finder-goal" name="goal">
+            <option value="All">Explore everything</option>
+            <option value="Writing">Write, brainstorm or summarize</option>
+            <option value="Design">Create images and designs</option>
+            <option value="Video">Make or edit videos</option>
+            <option value="Research">Research a topic</option>
+            <option value="Coding">Build or debug code</option>
+            <option value="Productivity">Automate work and organize tasks</option>
+            <option value="Audio">Create voice and audio</option>
+          </select>
+        </label>
+        <label class="finder-field"><span>Budget preference</span>
+          <select id="finder-budget" name="budget">
+            <option value="any">Show all pricing labels</option>
+            <option value="free">Free-tier tools only</option>
+          </select>
+        </label>
+        <button class="finder-submit" type="submit">Find my shortlist <span aria-hidden="true">→</span></button>
+        <p class="finder-feedback" id="finder-feedback" aria-live="polite">No account needed. Your choices stay in this browser.</p>
+      </form>
+    </section>
+
     <section class="section explore-section" id="explore">
       <div class="section-heading">
         <div><div class="eyebrow section-eyebrow">THE TOOL FLOOR</div><h2>Find your <span>next advantage.</span></h2><p>Explore tools by what you want to get done.</p></div>
