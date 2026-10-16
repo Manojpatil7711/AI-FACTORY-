@@ -62,7 +62,7 @@ let query = "";
 let sortMode = "featured";
 let budgetMode = "any";
 let showAllTools = false;
-const INITIAL_TOOL_LIMIT = 6;
+const INITIAL_TOOL_LIMIT = 8;
 function loadSavedTools() {
   try {
     const stored = JSON.parse(localStorage.getItem("ai-factory:saved-tools") || "[]");
@@ -175,6 +175,19 @@ grid.addEventListener("click", event => {
   persistSavedTools();
   renderTools();
 });
+document.querySelectorAll("[data-quick-category]").forEach(button => button.addEventListener("click", () => {
+  const target = categoryTabs.querySelector('[data-category="' + button.dataset.quickCategory + '"]');
+  if (target) target.click();
+  document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+}));
+document.querySelectorAll("[data-quick-filter]").forEach(button => button.addEventListener("click", () => {
+  budgetMode = button.dataset.quickFilter === "free" ? "free" : "any";
+  query = ""; searchInput.value = ""; showAllTools = false;
+  categoryTabs.querySelector('[data-category="All"]').click();
+  document.querySelector("#finder-budget").value = budgetMode;
+  document.querySelector("#finder-feedback").textContent = budgetMode === "free" ? "Showing tools with a listed free tier. Check each official site for current limits." : "No account needed. Your choices stay in this browser.";
+  document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+}));
 document.querySelectorAll("[data-category-jump]").forEach(button => button.addEventListener("click", () => {
   activeCategory = button.dataset.categoryJump;
   const tab = categoryTabs.querySelector(`[data-category="${activeCategory}"]`);
@@ -182,7 +195,7 @@ document.querySelectorAll("[data-category-jump]").forEach(button => button.addEv
   document.querySelector("#explore").scrollIntoView({behavior:"smooth"});
 }));
 document.querySelector("#reset-filters").addEventListener("click", () => {
-  query = ""; activeCategory = "All"; sortMode = "featured"; budgetMode = "any";
+  query = ""; activeCategory = "All"; sortMode = "featured"; budgetMode = "any"; showAllTools = false;
   searchInput.value = ""; sortSelect.value = "featured";
   document.querySelector("#finder-budget").value = "any";
   document.querySelector("#finder-goal").value = "All";
