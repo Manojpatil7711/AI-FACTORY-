@@ -44,9 +44,19 @@ for asset in page.assets:
     if not (root / asset).is_file():
         raise AssertionError(f"Missing local asset: {asset}")
 
+sitemap_path = root / "sitemap.xml"
+if not sitemap_path.is_file():
+    raise AssertionError("Missing sitemap.xml")
+sitemap = sitemap_path.read_text(encoding="utf-8")
+if "<urlset" not in sitemap or "<loc>" not in sitemap:
+    raise AssertionError("Sitemap is not valid-looking XML")
+robots = (root / "robots.txt").read_text(encoding="utf-8")
+if "Sitemap:" not in robots or "sitemap.xml" not in robots:
+    raise AssertionError("robots.txt must advertise sitemap.xml")
+
 records = re.findall(r'\{name:"([^"]+)",maker:"([^"]+)",category:"([^"]+)",.*?price:"([^"]+)",url:"([^"]+)"', js)
-if len(records) != 30:
-    raise AssertionError(f"Expected 30 directory entries, found {len(records)}")
+if len(records) != 50:
+    raise AssertionError(f"Expected 50 directory entries, found {len(records)}")
 names = [record[0] for record in records]
 if len(names) != len(set(names)):
     raise AssertionError("Duplicate tool names found")
@@ -58,4 +68,4 @@ bad_urls = [name for name, _, _, _, url in records if not url.startswith("https:
 if bad_urls:
     raise AssertionError(f"Tool links must use HTTPS: {', '.join(bad_urls)}")
 
-print(f"Smoke checks passed: {len(records)} unique tools, required UI IDs, local assets, categories and HTTPS links.")
+print(f"Smoke checks passed: {len(records)} unique tools, required UI IDs, local assets, categories, HTTPS links and sitemap.")
