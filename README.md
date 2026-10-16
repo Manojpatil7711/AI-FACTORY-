@@ -14,6 +14,7 @@ AI FACTORY is a premium-minded AI tools discovery directory. It helps visitors e
 - Accessible labels, keyboard focus styles, reduced-motion support and skip link
 - Lightweight static assets; no framework runtime or backend required for the first preview
 - SEO title, description, Open Graph metadata and favicon
+- GitHub Actions workflow for secure, free-first Cloudflare Pages publishing
 
 ## Project structure
 
@@ -25,6 +26,7 @@ AI FACTORY is a premium-minded AI tools discovery directory. It helps visitors e
 ├── favicon.svg
 ├── robots.txt
 ├── .nojekyll
+├── .github/workflows/deploy.yml
 └── README.md
 ```
 
@@ -38,22 +40,33 @@ python -m http.server 8000
 
 Then visit `http://localhost:8000`.
 
-## Free-first deployment plan
+## Free-first deployment
 
-- Cloudflare Pages project name: `ai-factory-tools`
-- Intended public URL: `https://ai-factory-tools.pages.dev` (reserved in the connected Cloudflare account; not live until a deployment succeeds)
+- Cloudflare Pages project: `ai-factory-tools`
+- Intended URL: `https://ai-factory-tools.pages.dev` (project created; not live until the first deployment succeeds)
 - Production branch: `main`
 - Build command: none; this is a static HTML/CSS/JavaScript site
-- Output directory: repository root
+- Published files are copied to `dist/` by GitHub Actions before deployment
 
-The shortest names `ai-factory` and `aifactory` were not available as clean Pages subdomains, so a descriptive, digit-free name was selected. No custom domain has been purchased or configured.
+The shortest names `ai-factory` and `aifactory` were not available as clean Pages subdomains. The selected URL contains no digits or random suffix.
+
+### One-time deployment setup
+
+1. Create a Cloudflare API token with **Cloudflare Pages: Edit** permission for the intended account.
+2. In GitHub, open **Settings → Secrets and variables → Actions → New repository secret**.
+3. Name the secret `CLOUDFLARE_API_TOKEN` and paste the token as its value. Never put the token in source code or a chat message.
+4. Open the repository's **Actions** tab, select **Deploy AI FACTORY**, and choose **Run workflow**. Later pushes to `main` deploy automatically after the secret is configured.
+
+The workflow intentionally skips publishing when the secret is missing. The Cloudflare account ID is used as a non-secret workflow setting.
+
+No custom domain has been purchased or configured.
 
 ## Planned architecture
 
 - **Frontend:** semantic HTML, modern CSS and JavaScript for the first low-cost release; consider a component framework only when it provides clear value.
-- **Backend:** Python API only for features that genuinely require server-side logic.
+- **Backend:** add a Python API only for features that genuinely require server-side logic and host it on a suitable runtime.
 - **Database/auth:** Supabase Postgres and Auth, with row-level security on exposed tables.
-- **Hosting:** Cloudflare Pages for the static site; evaluate Workers for server-side endpoints.
+- **Hosting:** Cloudflare Pages for the static site; evaluate Workers for edge endpoints.
 - **Quality:** automated checks, dependency pinning, migrations, secrets management, preview testing and rollback before production changes.
 
 Never place service-role keys, private API keys or database secrets in browser code. Enable and test row-level security before exposing database-backed features.
@@ -64,7 +77,7 @@ Tool names, descriptions, pricing and feature availability can change. Verify li
 
 ## Current limitations
 
-This starter is a front-end directory, not yet a production database-backed platform. Search and saved-tool state run in the browser; saved tools are not synced between devices. Admin CRUD, authentication, server APIs, real-time pricing verification, user accounts and monetization integrations are not implemented yet. Initial Cloudflare Pages project setup is complete, but the first successful deployment still needs to be verified.
+This starter is a front-end directory, not yet a production database-backed platform. Search and saved-tool state run in the browser; saved tools are not synced between devices. Admin CRUD, authentication, server APIs, real-time pricing verification, user accounts and monetization integrations are not implemented yet. The first deployment must be triggered after the Cloudflare API token is stored as a GitHub Actions secret.
 
 ## Brand
 
