@@ -22,7 +22,22 @@ const sortSelect = document.querySelector("#sort-select");
 let activeCategory = "All";
 let query = "";
 let sortMode = "featured";
-const savedTools = new Set();
+function loadSavedTools() {
+  try {
+    const stored = JSON.parse(localStorage.getItem("ai-factory:saved-tools") || "[]");
+    return new Set(Array.isArray(stored) ? stored.filter(name => tools.some(tool => tool.name === name)) : []);
+  } catch {
+    return new Set();
+  }
+}
+const savedTools = loadSavedTools();
+function persistSavedTools() {
+  try {
+    localStorage.setItem("ai-factory:saved-tools", JSON.stringify([...savedTools]));
+  } catch {
+    // Saving remains available for the current page session if storage is blocked.
+  }
+}
 
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
@@ -42,7 +57,7 @@ function toolCard(tool) {
 function renderTools() {
   const normalized = query.trim().toLowerCase();
   let filtered = tools.filter(tool => {
-    const categoryMatch = activeCategory === "All" || tool.category === activeCategory;
+    const categoryMatch = activeCategory === "All" || (activeCategory === "Saved" ? savedTools.has(tool.name) : tool.category === activeCategory);
     const searchable = [tool.name,tool.maker,tool.category,tool.description,tool.tags].join(" ").toLowerCase();
     return categoryMatch && (!normalized || searchable.includes(normalized));
   });
@@ -83,6 +98,7 @@ grid.addEventListener("click", event => {
   if (!button) return;
   const name = button.dataset.save;
   if (savedTools.has(name)) savedTools.delete(name); else savedTools.add(name);
+  persistSavedTools();
   renderTools();
 });
 document.querySelectorAll("[data-category-jump]").forEach(button => button.addEventListener("click", () => {
