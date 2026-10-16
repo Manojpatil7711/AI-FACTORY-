@@ -100,7 +100,7 @@ function renderTools() {
   let filtered = tools.filter(tool => {
     const categoryMatch = activeCategory === "All" || (activeCategory === "Saved" ? savedTools.has(tool.name) : tool.category === activeCategory);
     const searchable = [tool.name,tool.maker,tool.category,tool.description,tool.tags].join(" ").toLowerCase();
-    const budgetMatch = budgetMode !== "free" || tool.price === "Free tier";
+    const budgetMatch = budgetMode !== "free" || /^Free/i.test(tool.price);
     return categoryMatch && budgetMatch && (!normalized || searchable.includes(normalized));
   });
   if (sortMode === "az") filtered.sort((a,b) => a.name.localeCompare(b.name));
@@ -129,7 +129,7 @@ document.querySelector("#finder-form").addEventListener("submit", event => {
   else categoryTabs.querySelector('[data-category="All"]').click();
   const matches = tools.filter(tool =>
     (goal === "All" || tool.category === goal) &&
-    (budgetMode !== "free" || tool.price === "Free tier")
+    (budgetMode !== "free" || /^Free/i.test(tool.price))
   );
   const feedback = document.querySelector("#finder-feedback");
   feedback.textContent = matches.length
@@ -192,7 +192,7 @@ document.querySelectorAll("[data-category-jump]").forEach(button => button.addEv
   activeCategory = button.dataset.categoryJump;
   const tab = categoryTabs.querySelector(`[data-category="${activeCategory}"]`);
   if (tab) tab.click();
-  document.querySelector("#explore").scrollIntoView({behavior:"smooth"});
+  document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
 }));
 document.querySelector("#reset-filters").addEventListener("click", () => {
   query = ""; activeCategory = "All"; sortMode = "featured"; budgetMode = "any"; showAllTools = false;
