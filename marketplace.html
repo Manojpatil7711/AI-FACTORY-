@@ -15,7 +15,16 @@
   <style>
     :root{color-scheme:dark;--bg:#0b0b12;--panel:#13131e;--panel2:#191927;--line:#2d2b40;--text:#f7f6fc;--muted:#aaa8be;--violet:#b6a3ff;--green:#9ce7c0;--amber:#ffd19a;--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#272044 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.65 var(--font)}a{color:inherit;text-decoration:none}button,a{touch-action:manipulation}a:focus-visible,button:focus-visible{outline:2px solid var(--violet);outline-offset:4px}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.header{height:76px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:16px;font-weight:700;letter-spacing:-.4px}.brand b{color:var(--violet)}.nav{display:flex;align-items:center;gap:22px;color:var(--muted);font-size:13px}.nav a:hover{color:#fff}.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #4b4567;border-radius:10px;padding:11px 15px;font-weight:700;font-size:13px;background:#1d1a2d}.button.primary{background:var(--violet);border-color:var(--violet);color:#151122}.button:hover{filter:brightness(1.1)}.hero{padding:78px 0 50px;max-width:850px}.eyebrow{color:var(--green);font-size:11px;letter-spacing:1.7px;text-transform:uppercase;font-weight:700}.hero h1{font-size:clamp(42px,7vw,72px);letter-spacing:-3.5px;line-height:1.04;margin:20px 0}.hero h1 span{background:linear-gradient(90deg,var(--violet),#8dc4ff,var(--green));background-clip:text;-webkit-background-clip:text;color:transparent}.hero p{max-width:700px;color:var(--muted);font-size:17px}.notice{margin:22px 0 0;padding:15px 17px;border:1px solid #7d633d;border-radius:12px;background:#2b2117;color:#f5d8ae;font-size:13px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.section{padding:42px 0}.section h2{font-size:clamp(25px,4vw,38px);line-height:1.15;letter-spacing:-1.2px;margin:0 0 12px}.lead{color:var(--muted);max-width:740px;margin:0 0 25px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:linear-gradient(150deg,#181827,#11111a);border:1px solid var(--line);border-radius:16px;padding:22px;min-width:0}.icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#2b2542;color:var(--violet);font-size:19px}.card h3{font-size:17px;margin:15px 0 7px}.card p{color:var(--muted);font-size:13px;margin:0}.steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.step{counter-increment:step;padding:18px;border-top:1px solid #4a4266;background:#14131f;border-radius:0 0 12px 12px}.step:before{content:"0" counter(step);font-size:11px;color:var(--green);font-weight:800;letter-spacing:1px}.step h3{font-size:15px;margin:11px 0 6px}.step p{font-size:12px;color:var(--muted);margin:0}.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.status{padding:18px;border:1px solid var(--line);border-radius:12px;background:#11111a}.status strong{display:block;margin-bottom:5px}.status p{font-size:13px;color:var(--muted);margin:0}.pill{display:inline-block;border:1px solid #57506d;color:#d5ccff;padding:3px 8px;border-radius:30px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}.empty{padding:34px 22px;text-align:center;border:1px dashed #4b4567;border-radius:16px;background:#11111a}.empty h3{margin:0 0 7px}.empty p{margin:0 auto 18px;max-width:540px;color:var(--muted);font-size:13px}.footer{border-top:1px solid #ffffff14;padding:25px 0 36px;color:#8d8ba2;font-size:12px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer a{text-decoration:underline;text-underline-offset:3px}
-    @media(max-width:760px){.wrap{width:min(100% - 28px,1120px)}.header{height:auto;min-height:68px;flex-wrap:wrap;padding:13px 0}.nav{order:3;width:100%;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px}.header>.button{padding:9px 10px}.hero{padding:56px 0 35px}.grid{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.status-grid{grid-template-columns:1fr}.section{padding:30px 0}.hero h1{letter-spacing:-2.4px}}
+
+    .choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
+    .choice{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:8px;min-height:132px;padding:18px;border:1px solid var(--line);border-radius:14px;background:#13131e;color:var(--text);cursor:pointer;font:inherit}
+    .choice strong{font-size:14px}.choice span{font-size:12px;color:var(--muted)}.choice[aria-pressed="true"]{border-color:var(--violet);background:#211b34;box-shadow:0 0 0 1px #b6a3ff35}
+    .guide-panel{border:1px solid #4a4266;border-radius:16px;background:linear-gradient(135deg,#1a1728,#11111a);padding:22px;margin-top:14px}
+    .guide-panel h3{margin:0 0 7px}.guide-panel p{color:var(--muted);margin:0 0 12px;font-size:13px}.guide-panel ul{padding-left:20px;color:#e0deeb;font-size:13px}.guide-panel li{margin:6px 0}
+    .verify-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.verify-item{padding:15px;border:1px solid var(--line);border-radius:12px;background:#11111a}.verify-item b{display:block;font-size:13px;margin-bottom:4px}.verify-item span{font-size:12px;color:var(--muted)}
+    .small-note{font-size:12px;color:var(--muted);margin-top:14px}.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    @media(max-width:760px){.choice-grid{grid-template-columns:1fr}.choice{min-height:auto}.verify-list{grid-template-columns:1fr}}
+\n    @media(max-width:760px){.wrap{width:min(100% - 28px,1120px)}.header{height:auto;min-height:68px;flex-wrap:wrap;padding:13px 0}.nav{order:3;width:100%;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px}.header>.button{padding:9px 10px}.hero{padding:56px 0 35px}.grid{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.status-grid{grid-template-columns:1fr}.section{padding:30px 0}.hero h1{letter-spacing:-2.4px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
   </style>
 </head>
@@ -45,7 +54,44 @@
           <article class="card"><div class="icon" aria-hidden="true">◇</div><h3>Digital products</h3><p>Templates, code, workflows and other digital goods with explicit delivery terms and licensing details.</p></article>
         </div>
       </section>
-      <section class="section" id="how-it-works" aria-labelledby="process-title">
+
+      <section class="section" id="choose-your-path" aria-labelledby="choose-title">
+        <div class="eyebrow">Start with your goal</div>
+        <h2 id="choose-title">What do you want to do?</h2>
+        <p class="lead">Choose one option. We’ll show the right next steps in plain language. This guide is a preview and does not submit or save your information.</p>
+        <div class="choice-grid" role="group" aria-label="Choose buyer or seller journey">
+          <button class="choice" type="button" data-path="buy" aria-pressed="true"><span aria-hidden="true">01 · BUY</span><strong>I want to buy something</strong><span>Find a tool, AI agent, website or digital product.</span></button>
+          <button class="choice" type="button" data-path="sell" aria-pressed="false"><span aria-hidden="true">02 · SELL</span><strong>I want to sell my product</strong><span>Prepare your profile, evidence and listing details.</span></button>
+          <button class="choice" type="button" data-path="learn" aria-pressed="false"><span aria-hidden="true">03 · EXPLORE</span><strong>I’m not sure yet</strong><span>Compare asset types and learn what to check first.</span></button>
+        </div>
+        <div class="guide-panel" id="path-guide" aria-live="polite">
+          <h3>Buyer guide: choose the right asset</h3>
+          <p>Start by choosing what you need, then compare the total cost, ownership evidence, included items and support terms before paying.</p>
+          <div class="choice-grid" role="group" aria-label="Choose the type of asset to buy">
+            <button class="choice" type="button" data-asset="ai" aria-pressed="true"><strong>AI tool or agent</strong><span>For writing, research, automation or content.</span></button>
+            <button class="choice" type="button" data-asset="saas" aria-pressed="false"><strong>Website or micro-SaaS</strong><span>For buying an existing digital business.</span></button>
+            <button class="choice" type="button" data-asset="digital" aria-pressed="false"><strong>Code or digital product</strong><span>For templates, code, workflows or files.</span></button>
+          </div>
+          <div id="asset-guide">
+            <ul><li>Check what the tool actually does and whether a demo is available.</li><li>Confirm free limits, recurring fees, data handling and cancellation terms.</li><li>Do not share passwords or send money outside an officially supported transaction flow.</li></ul>
+          </div>
+          <p class="small-note">Buyer protection reminder: a profile or listing check is not a guarantee of quality, income, legal ownership or future performance.</p>
+        </div>
+      </section>
+
+      <section class="section" id="profile-verification" aria-labelledby="profile-title">
+        <div class="eyebrow">Clear identity. Clear evidence.</div>
+        <h2 id="profile-title">Profile verification — visible and honest</h2>
+        <p class="lead">Buyer and seller profiles must show only the checks actually completed. A verified profile does not automatically mean a product is safe, profitable or legally transferable.</p>
+        <div class="verify-list">
+          <div class="verify-item"><b>1. Email / contact confirmed</b><span>Confirms access to a contact method. It is not proof of legal identity.</span></div>
+          <div class="verify-item"><b>2. Identity checked</b><span>For sellers and higher-risk actions, use a suitable provider/process; keep documents private and access-restricted.</span></div>
+          <div class="verify-item"><b>3. Asset ownership evidence</b><span>Check relevant domain, product, code or account control; record scope and date of review.</span></div>
+          <div class="verify-item"><b>4. Listing reviewed</b><span>Review claims, price, rights, included assets, costs and transfer requirements before publishing.</span></div>
+        </div>
+        <div class="notice"><strong>Important:</strong> These are planned verification stages, not live verification services. This preview does not collect identity documents, store profiles or issue verification badges.</div>
+      </section>
+\n      <section class="section" id="how-it-works" aria-labelledby="process-title">
         <h2 id="process-title">A safer process, step by step</h2>
         <p class="lead">These are the planned controls. They must be implemented and tested before the marketplace accepts payments.</p>
         <div class="steps">
@@ -81,6 +127,43 @@
     </main>
     <footer class="footer"><span>© <span id="year">2026</span> AI FACTORY · Preview, not a live trading service.</span><span><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="./">AI tools directory</a></span></footer>
   </div>
-  <script>document.getElementById("year").textContent = String(new Date().getFullYear());</script>
+  <script>
+    document.getElementById("year").textContent = String(new Date().getFullYear());
+    const pathGuide = document.getElementById("path-guide");
+    const pathButtons = [...document.querySelectorAll("[data-path]")];
+    const buyerGuide = `
+      <h3>Buyer guide: choose the right asset</h3>
+      <p>Start by choosing what you need, then compare the total cost, ownership evidence, included items and support terms before paying.</p>
+      <div class="choice-grid" role="group" aria-label="Choose the type of asset to buy">
+        <button class="choice" type="button" data-asset="ai" aria-pressed="true"><strong>AI tool or agent</strong><span>For writing, research, automation or content.</span></button>
+        <button class="choice" type="button" data-asset="saas" aria-pressed="false"><strong>Website or micro-SaaS</strong><span>For buying an existing digital business.</span></button>
+        <button class="choice" type="button" data-asset="digital" aria-pressed="false"><strong>Code or digital product</strong><span>For templates, code, workflows or files.</span></button>
+      </div>
+      <div id="asset-guide"><ul><li>Check what the tool actually does and whether a demo is available.</li><li>Confirm free limits, recurring fees, data handling and cancellation terms.</li><li>Do not share passwords or send money outside an officially supported transaction flow.</li></ul></div>
+      <p class="small-note">A profile or listing check is not a guarantee of quality, income, legal ownership or future performance.</p>`;
+    const guides = {
+      buy: buyerGuide,
+      sell: `<h3>Seller guide: prepare before you list</h3><p>Public selling is not open yet. Prepare the information below; do not send passwords, private keys or identity documents by email.</p><ul><li>Use a contact method you control and complete the planned profile checks when available.</li><li>Prepare a working demo, accurate description, price, included assets and support terms.</li><li>Gather appropriate ownership/control evidence and explain any third-party licences or recurring costs.</li><li>Disclose limitations, known issues, revenue/traffic evidence methods and what can legally be transferred.</li><li>Wait for moderation approval; never claim “verified” before the platform confirms the exact check.</li></ul><p class="small-note">No listing is submitted or saved from this preview.</p>`,
+      learn: `<h3>Explore safely before deciding</h3><p>Choose an asset category, write down the problem you want solved and compare at least two options.</p><ul><li>For AI tools: test the demo and check limits, privacy and subscription cost.</li><li>For websites or micro-SaaS: examine ownership, traffic/revenue evidence, operating costs and transferability.</li><li>For digital products: confirm the licence, file list, update policy and permitted use.</li><li>Ask questions in writing and pause if anyone pressures you to pay urgently.</li></ul><p class="small-note">The marketplace is still a preview; there are no approved live offers to buy.</p>`
+    };
+    function renderPath(path) {
+      pathButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.path === path)));
+      pathGuide.innerHTML = guides[path] || guides.buy;
+      pathGuide.querySelectorAll("[data-asset]").forEach(button => button.addEventListener("click", () => renderAsset(button.dataset.asset)));
+    }
+    function renderAsset(asset) {
+      const descriptions = {
+        ai: ["AI tool or agent checklist", ["Check the actual demo and feature limits.", "Confirm subscription cost, privacy/data use and cancellation.", "Check whether support and updates are included."]],
+        saas: ["Website or micro-SaaS checklist", ["Ask for read-only evidence of ownership, traffic and revenue claims where relevant.", "Confirm domain, code, hosting, licences, recurring expenses and transfer steps.", "Never treat screenshots alone as proof; use an independent professional for significant purchases."]],
+        digital: ["Code or digital product checklist", ["Confirm exactly which files, source code and documentation are included.", "Check the licence, resale rights, third-party dependencies and update terms.", "Use malware scanning and inspect code before deploying it in a real environment."]]
+      };
+      const item = descriptions[asset] || descriptions.ai;
+      document.querySelectorAll("[data-asset]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.asset === asset)));
+      const target = document.getElementById("asset-guide");
+      if (target) target.innerHTML = "<h3>" + item[0] + "</h3><ul>" + item[1].map(line => "<li>" + line + "</li>").join("") + "</ul>";
+    }
+    pathButtons.forEach(button => button.addEventListener("click", () => renderPath(button.dataset.path)));
+    document.querySelectorAll("[data-asset]").forEach(button => button.addEventListener("click", () => renderAsset(button.dataset.asset)));
+  </script>
 </body>
 </html>
