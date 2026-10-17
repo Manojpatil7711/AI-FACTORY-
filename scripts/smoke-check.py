@@ -79,8 +79,8 @@ except ET.ParseError as exc:
     raise AssertionError(f"sitemap.xml is not valid XML: {exc}") from exc
 ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 sitemap_urls = [node.text for node in sitemap_root.findall("sm:url/sm:loc", ns)]
-if len(sitemap_urls) != 15:
-    raise AssertionError(f"Expected 15 sitemap URLs, found {len(sitemap_urls)}")
+if len(sitemap_urls) != 20:
+    raise AssertionError(f"Expected 20 sitemap URLs, found {len(sitemap_urls)}")
 if len(sitemap_urls) != len(set(sitemap_urls)):
     raise AssertionError("Duplicate sitemap URLs found")
 if any(not url.startswith("https://ai-factory-tools.pages.dev/") for url in sitemap_urls):
@@ -96,8 +96,8 @@ if "cp category-*.html tool-*.html dist/" not in deploy_workflow:
     raise AssertionError("Production deployment workflow must copy all category pages into dist/")
 sitemap_paths = {urlparse(url).path.lstrip("/") for url in sitemap_urls}
 tool_pages = sorted(root.glob("tool-*.html"))
-if len(tool_pages) != 5:
-    raise AssertionError(f"Expected 5 individual tool guides, found {len(tool_pages)}")
+if len(tool_pages) != 10:
+    raise AssertionError(f"Expected 10 individual tool guides, found {len(tool_pages)}")
 for tool_page in tool_pages:
     source = tool_page.read_text(encoding="utf-8")
     parser = PageParser()
