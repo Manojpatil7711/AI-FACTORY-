@@ -95,15 +95,41 @@ function toolCard(tool) {
     <div class="tool-card-bottom"><div class="tool-meta"><span class="tool-category">${escapeHTML(tool.category)}</span><span class="tool-price">${escapeHTML(tool.price)}</span></div><a class="visit-link" href="${escapeHTML(tool.url)}" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">↗</span></a></div>
   </article>`;
 }
+const SEARCH_STOP_WORDS = new Set(["ai","tool","tools","best","for","the","a","an","to","with","and","of"]);
+const SEARCH_ALIASES = {
+  write:["writing","writer","text","content"], writing:["write","writer","text","content"],
+  image:["images","picture","pictures","design","art"], pictures:["image","images","photo","design"],
+  generator:["generate","create","creation","builder"], generate:["generator","create","creation"],
+  maker:["create","creator","generator","builder"], create:["creator","make","maker","generator"],
+  video:["videos","clip","clips","editing","editor"], clips:["clip","video","videos"],
+  edit:["editing","editor","video"], editing:["edit","editor","video"],
+  code:["coding","developer","programming"], coding:["code","developer","programming"],
+  build:["builder","coding","website","app"], website:["websites","site","builder","design"],
+  research:["search","sources","papers","study"], search:["research","sources","find"],
+  voice:["audio","speech","music"], speech:["voice","audio","transcription"],
+  automation:["automate","workflow","productivity"], automate:["automation","workflow"],
+  free:["free tier","no cost","free plan"], gratis:["free","free tier"],
+  translate:["translation","language","translator"], translation:["translate","translator","language"],
+  summary:["summarize","summarization","documents"], summarize:["summary","summarization","documents"],
+  background:["remove background","image","photo"], resume:["cv","writing","document"],
+  presentation:["slides","deck","pitch"], slides:["presentation","deck"]
+};
+function searchTermMatches(term, searchable) {
+  const variants = [term, ...(SEARCH_ALIASES[term] || [])];
+  return variants.some(variant => searchable.includes(variant));
+}
 function renderTools() {
-  const normalized = query.trim().toLowerCase();
+  const normalized = query.trim().toLowerCase().replace(/[^\\p{L}\\p{N}\\s-]/gu, " ").replace(/\\s+/g, " ").trim();
+  const terms = normalized.split(" ").filter(term => term && !SEARCH_STOP_WORDS.has(term));
   let filtered = tools.filter(tool => {
     const categoryMatch = activeCategory === "All" || (activeCategory === "Saved" ? savedTools.has(tool.name) : tool.category === activeCategory);
-    const searchable = [tool.name,tool.maker,tool.category,tool.description,tool.tags].join(" ").toLowerCase();
+    const searchable = [tool.name,tool.maker,tool.category,tool.description,tool.tags,tool.price].join(" ").toLowerCase();
     const budgetMatch = budgetMode !== "free" || /^Free/i.test(tool.price);
-    return categoryMatch && budgetMatch && (!normalized || searchable.includes(normalized));
+    const queryMatch = !terms.length || terms.every(term => searchTermMatches(term, searchable));
+    return categoryMatch && budgetMatch && queryMatch;
   });
   if (sortMode === "az") filtered.sort((a,b) => a.name.localeCompare(b.name));
+  else if (sortMode === "free") filtered.sort((a,b) => Number(!/^Free/i.test(a.price)) - Number(!/^Free/i.test(b.price)) || a.featured - b.featured);
   else filtered.sort((a,b) => a.featured - b.featured);
   const visibleTools = showAllTools ? filtered : filtered.slice(0, INITIAL_TOOL_LIMIT);
   grid.innerHTML = visibleTools.map(toolCard).join("");
