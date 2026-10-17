@@ -144,80 +144,6 @@ document.querySelector("#hero-search").addEventListener("submit", event => {
   query = searchInput.value;
   showAllTools = false;
   
-const compareSelects = ["compare-one","compare-two","compare-three"].map(id => document.getElementById(id));
-const compareResults = document.getElementById("compare-results");
-function populateCompareSelects() {
-  const sortedTools = [...tools].sort((a,b) => a.name.localeCompare(b.name));
-  compareSelects.forEach((select,index) => {
-    const placeholder = index === 2 ? '<option value="">Skip third tool</option>' : '<option value="">Choose a tool…</option>';
-    select.innerHTML = placeholder + sortedTools.map(tool => '<option value="' + escapeHTML(tool.name) + '">' + escapeHTML(tool.name) + '</option>').join("");
-  });
-  if (tools.some(tool => tool.name === "ChatGPT")) compareSelects[0].value = "ChatGPT";
-  if (tools.some(tool => tool.name === "Claude")) compareSelects[1].value = "Claude";
-}
-function renderComparison() {
-  const selectedNames = [...new Set(compareSelects.map(select => select.value).filter(Boolean))];
-  const selected = selectedNames.map(name => tools.find(tool => tool.name === name)).filter(Boolean);
-  if (!selected.length) {
-    compareResults.innerHTML = "<p>Select at least one tool to compare.</p>";
-    return;
-  }
-  const rows = [
-    ["Category",tool => tool.category],
-    ["Provider",tool => tool.maker],
-    ["Pricing label",tool => tool.price],
-    ["What it does",tool => tool.description],
-    ["Tags",tool => tool.tags.split(" ").join(", ")],
-    ["Official website",tool => '<a href="' + escapeHTML(tool.url) + '" target="_blank" rel="noopener noreferrer">Visit official site ↗</a>']
-  ];
-  compareResults.innerHTML = '<table class="compare-table"><thead><tr><th scope="col">Feature</th>' + selected.map(tool => '<th scope="col">' + escapeHTML(tool.name) + '</th>').join("") + '</tr></thead><tbody>' + rows.map(([label,getter]) => '<tr><th scope="row">' + escapeHTML(label) + '</th>' + selected.map(tool => '<td>' + (label === "Official website" ? getter(tool) : escapeHTML(getter(tool))) + '</td>').join("") + '</tr>').join("") + '</tbody></table><p class="directory-note">This is a directory-level comparison, not an independent performance benchmark. Confirm current plans and features on official sites.</p>';
-}
-compareSelects.forEach(select => select.addEventListener("change", renderComparison));
-populateCompareSelects();
-renderComparison();
-
-const promptForm = document.getElementById("prompt-form");
-const promptOutput = document.getElementById("prompt-output");
-const promptCopy = document.getElementById("prompt-copy");
-const promptDownload = document.getElementById("prompt-download");
-const promptFeedback = document.getElementById("prompt-feedback");
-const promptTemplates = {
-  shorts: {role:"You are an experienced short-form video scriptwriter.",task:"Write a YouTube Shorts script with a strong opening hook, a clear progression, concise spoken lines, suggested on-screen text, and a memorable ending. Include a scene-by-scene outline and an estimated duration."},
-  blog: {role:"You are an experienced editor and content strategist.",task:"Create a useful blog article outline with a specific reader problem, a clear title, logical H2/H3 sections, practical examples, an FAQ, and suggestions for sources to verify. Do not invent facts or citations."},
-  image: {role:"You are a professional visual art director.",task:"Write a detailed image-generation prompt covering the subject, setting, composition, lighting, visual style, color palette, camera/framing, aspect ratio, and elements to avoid. Keep text in the image minimal unless explicitly requested."},
-  research: {role:"You are a careful research planner.",task:"Create a research plan with the key questions, reliable source types to consult, a method to cross-check claims, relevant dates, uncertainties, and a concise final-report structure. Never fabricate sources or present unverified claims as facts."},
-  website: {role:"You are a senior product planner and web quality engineer.",task:"Turn the idea into a practical website project plan with user needs, core pages, features, accessibility, responsive behavior, SEO, privacy, security, test cases, acceptance criteria, and a low-cost implementation sequence. Separate confirmed requirements from assumptions."},
-  social: {role:"You are a social media content strategist.",task:"Draft a platform-appropriate social post with a strong first line, useful main message, clear call to action, and relevant optional hashtags. Avoid misleading claims, engagement bait, and unsupported statistics."}
-};
-promptForm.addEventListener("submit",event=>{
-  event.preventDefault();
-  const template = promptTemplates[document.getElementById("prompt-task").value];
-  const audience = document.getElementById("prompt-audience").value.trim();
-  const tone = document.getElementById("prompt-tone").value.trim();
-  const details = document.getElementById("prompt-details").value.trim();
-  promptOutput.value = [template.role,template.task,audience ? "Target audience: " + audience + "." : "",tone ? "Tone or style: " + tone + "." : "",details ? "Project details and constraints:\n" + details : "", "Quality requirements: Be specific and practical. State assumptions clearly, ask for missing critical information when needed, and do not invent facts, sources, results, or capabilities.", "Output format: Use clear headings and actionable steps. Finish with a short checklist the user can apply."].filter(Boolean).join("\n\n");
-  promptCopy.disabled = false;
-  promptDownload.disabled = false;
-  promptFeedback.textContent = "Prompt ready. Copy it into your preferred AI tool; this website has not run the prompt.";
-});
-promptCopy.addEventListener("click",async()=>{
-  try {
-    await navigator.clipboard.writeText(promptOutput.value);
-    promptFeedback.textContent = "Prompt copied to clipboard.";
-  } catch {
-    promptOutput.focus(); promptOutput.select();
-    promptFeedback.textContent = "Automatic copy was blocked by your browser. The prompt is selected; use Copy from your device menu.";
-  }
-});
-promptDownload.addEventListener("click",()=>{
-  const blob = new Blob([promptOutput.value],{type:"text/plain;charset=utf-8"});
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url; link.download = "ai-factory-prompt.txt"; link.click();
-  URL.revokeObjectURL(url);
-});
-
-renderTools();
   document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 });
 searchInput.addEventListener("input", () => { query = searchInput.value; showAllTools = false; renderTools(); });
@@ -293,4 +219,78 @@ document.querySelector("#show-more-tools").addEventListener("click", () => {
   if (!showAllTools) document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
 });
 document.querySelector("#year").textContent = String(new Date().getFullYear());
+const compareSelects = ["compare-one","compare-two","compare-three"].map(id => document.getElementById(id));
+const compareResults = document.getElementById("compare-results");
+function populateCompareSelects() {
+  const sortedTools = [...tools].sort((a,b) => a.name.localeCompare(b.name));
+  compareSelects.forEach((select,index) => {
+    const placeholder = index === 2 ? '<option value="">Skip third tool</option>' : '<option value="">Choose a tool…</option>';
+    select.innerHTML = placeholder + sortedTools.map(tool => '<option value="' + escapeHTML(tool.name) + '">' + escapeHTML(tool.name) + '</option>').join("");
+  });
+  if (tools.some(tool => tool.name === "ChatGPT")) compareSelects[0].value = "ChatGPT";
+  if (tools.some(tool => tool.name === "Claude")) compareSelects[1].value = "Claude";
+}
+function renderComparison() {
+  const selectedNames = [...new Set(compareSelects.map(select => select.value).filter(Boolean))];
+  const selected = selectedNames.map(name => tools.find(tool => tool.name === name)).filter(Boolean);
+  if (!selected.length) {
+    compareResults.innerHTML = "<p>Select at least one tool to compare.</p>";
+    return;
+  }
+  const rows = [
+    ["Category",tool => tool.category],
+    ["Provider",tool => tool.maker],
+    ["Pricing label",tool => tool.price],
+    ["What it does",tool => tool.description],
+    ["Tags",tool => tool.tags.split(" ").join(", ")],
+    ["Official website",tool => '<a href="' + escapeHTML(tool.url) + '" target="_blank" rel="noopener noreferrer">Visit official site ↗</a>']
+  ];
+  compareResults.innerHTML = '<table class="compare-table"><thead><tr><th scope="col">Feature</th>' + selected.map(tool => '<th scope="col">' + escapeHTML(tool.name) + '</th>').join("") + '</tr></thead><tbody>' + rows.map(([label,getter]) => '<tr><th scope="row">' + escapeHTML(label) + '</th>' + selected.map(tool => '<td>' + (label === "Official website" ? getter(tool) : escapeHTML(getter(tool))) + '</td>').join("") + '</tr>').join("") + '</tbody></table><p class="directory-note">This is a directory-level comparison, not an independent performance benchmark. Confirm current plans and features on official sites.</p>';
+}
+compareSelects.forEach(select => select.addEventListener("change", renderComparison));
+populateCompareSelects();
+renderComparison();
+
+const promptForm = document.getElementById("prompt-form");
+const promptOutput = document.getElementById("prompt-output");
+const promptCopy = document.getElementById("prompt-copy");
+const promptDownload = document.getElementById("prompt-download");
+const promptFeedback = document.getElementById("prompt-feedback");
+const promptTemplates = {
+  shorts: {role:"You are an experienced short-form video scriptwriter.",task:"Write a YouTube Shorts script with a strong opening hook, a clear progression, concise spoken lines, suggested on-screen text, and a memorable ending. Include a scene-by-scene outline and an estimated duration."},
+  blog: {role:"You are an experienced editor and content strategist.",task:"Create a useful blog article outline with a specific reader problem, a clear title, logical H2/H3 sections, practical examples, an FAQ, and suggestions for sources to verify. Do not invent facts or citations."},
+  image: {role:"You are a professional visual art director.",task:"Write a detailed image-generation prompt covering the subject, setting, composition, lighting, visual style, color palette, camera/framing, aspect ratio, and elements to avoid. Keep text in the image minimal unless explicitly requested."},
+  research: {role:"You are a careful research planner.",task:"Create a research plan with the key questions, reliable source types to consult, a method to cross-check claims, relevant dates, uncertainties, and a concise final-report structure. Never fabricate sources or present unverified claims as facts."},
+  website: {role:"You are a senior product planner and web quality engineer.",task:"Turn the idea into a practical website project plan with user needs, core pages, features, accessibility, responsive behavior, SEO, privacy, security, test cases, acceptance criteria, and a low-cost implementation sequence. Separate confirmed requirements from assumptions."},
+  social: {role:"You are a social media content strategist.",task:"Draft a platform-appropriate social post with a strong first line, useful main message, clear call to action, and relevant optional hashtags. Avoid misleading claims, engagement bait, and unsupported statistics."}
+};
+promptForm.addEventListener("submit",event=>{
+  event.preventDefault();
+  const template = promptTemplates[document.getElementById("prompt-task").value];
+  const audience = document.getElementById("prompt-audience").value.trim();
+  const tone = document.getElementById("prompt-tone").value.trim();
+  const details = document.getElementById("prompt-details").value.trim();
+  promptOutput.value = [template.role,template.task,audience ? "Target audience: " + audience + "." : "",tone ? "Tone or style: " + tone + "." : "",details ? "Project details and constraints:\n" + details : "", "Quality requirements: Be specific and practical. State assumptions clearly, ask for missing critical information when needed, and do not invent facts, sources, results, or capabilities.", "Output format: Use clear headings and actionable steps. Finish with a short checklist the user can apply."].filter(Boolean).join("\n\n");
+  promptCopy.disabled = false;
+  promptDownload.disabled = false;
+  promptFeedback.textContent = "Prompt ready. Copy it into your preferred AI tool; this website has not run the prompt.";
+});
+promptCopy.addEventListener("click",async()=>{
+  try {
+    await navigator.clipboard.writeText(promptOutput.value);
+    promptFeedback.textContent = "Prompt copied to clipboard.";
+  } catch {
+    promptOutput.focus(); promptOutput.select();
+    promptFeedback.textContent = "Automatic copy was blocked by your browser. The prompt is selected; use Copy from your device menu.";
+  }
+});
+promptDownload.addEventListener("click",()=>{
+  const blob = new Blob([promptOutput.value],{type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url; link.download = "ai-factory-prompt.txt"; link.click();
+  URL.revokeObjectURL(url);
+});
+
+
 renderTools();
