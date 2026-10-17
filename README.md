@@ -105,3 +105,68 @@ Implemented on the `feature/phase-1-smart-directory` branch:
 - [ ] Review preview deployment before merging to `main`.
 
 This branch has not been merged or deployed to production.
+
+
+## Marketplace MVP direction (October 2026)
+
+The product direction is evolving from a directory-only starter into a free-first discovery and digital-asset marketplace.
+
+### Positioning
+- Primary focus: discover AI tools and evaluate small AI products, agents and micro-SaaS businesses.
+- Secondary categories: websites, domains and digital products.
+- Differentiator: transparent listing status, evidence-backed seller claims, clear product costs/limits, and practical buyer guidance. Never label a listing "verified" unless the checks performed are documented.
+
+### Current preview status
+- The homepage introduces the planned marketplace and founding-seller contact route.
+- Seller enquiries use an email link; there is no database-backed submission form yet.
+- There are no user accounts, public asset listings, escrow, checkout or live payments.
+- The directory search remains client-side and does not save marketplace data.
+- Do not claim listings, transactions, revenue or verification results that have not happened.
+
+### Razorpay-ready payment plan
+Keep payments disabled until the marketplace has a custom domain, a secured server-side API, seller/buyer records, listing moderation, terms/refund policies, and an approved Razorpay account. Future integration should:
+1. Create orders on the server; never trust client-provided amounts.
+2. Keep Razorpay Key Secret and webhook secret in server-side environment secrets only.
+3. Verify checkout signatures server-side and verify webhook signatures against the raw request body.
+4. Make webhook handling idempotent; record payment state in the database and reconcile failures/refunds.
+5. Never store card data. Do not implement escrow or hold third-party seller funds unless the payment provider and applicable legal requirements explicitly support the model.
+6. Start with platform-owned fees such as featured listings; add marketplace split payouts only after checking Razorpay product eligibility, onboarding and compliance requirements.
+7. Keep a payment-provider adapter so the domain, database and UI do not depend on a hard-coded provider.
+
+### Free-first build sequence
+1. Validate demand and recruit real founding sellers.
+2. Build database-backed listings, moderation, search/filtering and buyer enquiries with server-side validation and row-level security.
+3. Add analytics, abuse controls, legal pages and backups.
+4. Add Razorpay test-mode checkout for platform-owned listing fees; test webhooks and failure/refund paths.
+5. Enable live payments only after account approval, domain verification and end-to-end tests.
+
+This roadmap is not a claim that payment integration or the database is already implemented.
+
+
+## Trust-first marketplace preview
+
+A separate `marketplace.html` preview now explains the planned asset categories, listing statuses, seller checks, buyer journey and safety limits. It deliberately shows **no invented live listings** and clearly states that transactions, escrow, accounts and payments are not enabled.
+
+### Marketplace safety gate before launch
+
+- [ ] Decide the supported asset categories and prohibited listing rules.
+- [ ] Write buyer terms, seller terms, privacy notice, refund/cancellation policy and dispute escalation process with appropriate legal review.
+- [ ] Implement Supabase Auth and database schema with tested Row Level Security; keep privileged keys server-side only.
+- [ ] Require seller identity checks appropriate to risk and record the method, timestamp and result; never expose identity documents publicly.
+- [ ] Verify control/ownership evidence for each asset type and show exactly what was checked, by whom and when.
+- [ ] Require manual moderation before publication; create audit logs for status, price, ownership evidence and admin actions.
+- [ ] Implement buyer enquiries and seller response flow with anti-spam/rate limits before public user-generated content.
+- [ ] For payments, use server-created orders, server-side signature verification, signed webhook validation, idempotency, reconciliation and a documented refund/dispute path.
+- [ ] Do not advertise escrow or hold seller proceeds unless the legal/payment-provider model explicitly supports it.
+- [ ] Test abuse cases: fake seller, stolen asset, duplicate listing, manipulated price, failed payment, webhook replay, refund, account takeover, XSS, CSRF, SQL injection, IDOR and admin privilege escalation.
+- [ ] Launch in stages: invite-only listings → limited pilot → public submissions → payments only after controls pass.
+
+### Recommended commercial sequence
+
+1. Free directory and seller discovery to learn which categories attract genuine demand.
+2. Manually moderated listings and buyer-seller contact; do not collect buyer funds yet.
+3. After repeat usage: optional featured listings with clear sponsored labels, subject to policy and disclosure.
+4. After legal, support and fraud controls: transaction fee or paid seller tools; validate the fee model before investing.
+5. Reinvest revenue into verification, customer support, monitoring, backups and reliable infrastructure before expensive growth campaigns.
+
+A checked identity, checked ownership evidence, reviewed listing, and a completed transaction are four different claims. Never combine them into a single blanket “100% verified” badge.
