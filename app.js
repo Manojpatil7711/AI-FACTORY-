@@ -88,7 +88,7 @@ function toolCard(tool) {
   return `<article class="tool-card">
     <div class="tool-card-top">
       <div class="tool-logo ${escapeHTML(tool.tone)}" aria-hidden="true"><img src="https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(tool.url)}&amp;sz=128" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span hidden>${escapeHTML(tool.initials)}</span></div>
-      <div class="tool-title-wrap"><h3 class="tool-title">${escapeHTML(tool.name)}</h3><div class="tool-maker">${escapeHTML(tool.maker)}</div></div>
+      <div class="tool-title-wrap"><h3 class="tool-title">${({ChatGPT:"tool-chatgpt.html",Claude:"tool-claude.html",Gemini:"tool-gemini.html",Perplexity:"tool-perplexity.html",Canva:"tool-canva.html"})[tool.name] ? `<a href="${({ChatGPT:"tool-chatgpt.html",Claude:"tool-claude.html",Gemini:"tool-gemini.html",Perplexity:"tool-perplexity.html",Canva:"tool-canva.html"})[tool.name]}" class="tool-detail-link">${escapeHTML(tool.name)} <span aria-hidden="true">↗</span></a>` : escapeHTML(tool.name)}</h3><div class="tool-maker">${escapeHTML(tool.maker)}</div></div>
       <button class="save-tool" type="button" data-save="${escapeHTML(tool.name)}" aria-label="${saved ? "Remove" : "Save"} ${escapeHTML(tool.name)} ${saved ? "from" : "to"} saved tools" aria-pressed="${saved}">${saved ? "♥" : "♡"}</button>
     </div>
     <p class="tool-description">${escapeHTML(tool.description)}</p>
