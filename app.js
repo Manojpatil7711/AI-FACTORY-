@@ -300,7 +300,7 @@ if (crossPromo && crossPromoClose) {
   const dismissedKey = "ai-factory-cross-promo-dismissed";
   let promoShown = false;
   const showCrossPromo = () => {
-    if (promoShown || crossPromo.hidden) return;
+    if (promoShown) return;
     promoShown = true;
     crossPromo.hidden = false;
     crossPromo.classList.add("is-visible");
