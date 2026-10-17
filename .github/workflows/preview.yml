@@ -1,0 +1,50 @@
+name: Preview AI FACTORY
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  preview:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Prepare static site
+        run: |
+          mkdir -p dist
+          cp index.html privacy.html terms.html styles.css app.js favicon.svg robots.txt sitemap.xml dist/
+          cp category-*.html tool-*.html dist/
+
+      - name: Check preview credentials
+        id: credentials
+        shell: bash
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          if [ -n "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Preview skipped: configure CLOUDFLARE_API_TOKEN repository secret."
+          fi
+
+      - name: Deploy isolated preview
+        if: steps.credentials.outputs.ready == 'true'
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: cda7446423c24ef649c2f42e4ec8fd39
+          command: pages deploy dist --project-name=ai-factory-tools --branch=phase-2-preview
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
