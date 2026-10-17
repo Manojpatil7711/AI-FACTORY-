@@ -143,7 +143,7 @@ document.querySelector("#hero-search").addEventListener("submit", event => {
   event.preventDefault();
   query = searchInput.value;
   showAllTools = false;
-  
+  renderTools();
   document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 });
 searchInput.addEventListener("input", () => { query = searchInput.value; showAllTools = false; renderTools(); });
