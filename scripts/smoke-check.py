@@ -72,8 +72,8 @@ except ET.ParseError as exc:
     raise AssertionError(f"sitemap.xml is not valid XML: {exc}") from exc
 ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 sitemap_urls = [node.text for node in sitemap_root.findall("sm:url/sm:loc", ns)]
-if len(sitemap_urls) != 10:
-    raise AssertionError(f"Expected 10 sitemap URLs, found {len(sitemap_urls)}")
+if len(sitemap_urls) != 11:
+    raise AssertionError(f"Expected 11 sitemap URLs, found {len(sitemap_urls)}")
 if len(sitemap_urls) != len(set(sitemap_urls)):
     raise AssertionError("Duplicate sitemap URLs found")
 if any(not url.startswith("https://ai-factory-tools.pages.dev/") for url in sitemap_urls):
