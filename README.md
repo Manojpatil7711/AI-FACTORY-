@@ -141,3 +141,32 @@ Keep payments disabled until the marketplace has a custom domain, a secured serv
 5. Enable live payments only after account approval, domain verification and end-to-end tests.
 
 This roadmap is not a claim that payment integration or the database is already implemented.
+
+
+## Trust-first marketplace preview
+
+A separate `marketplace.html` preview now explains the planned asset categories, listing statuses, seller checks, buyer journey and safety limits. It deliberately shows **no invented live listings** and clearly states that transactions, escrow, accounts and payments are not enabled.
+
+### Marketplace safety gate before launch
+
+- [ ] Decide the supported asset categories and prohibited listing rules.
+- [ ] Write buyer terms, seller terms, privacy notice, refund/cancellation policy and dispute escalation process with appropriate legal review.
+- [ ] Implement Supabase Auth and database schema with tested Row Level Security; keep privileged keys server-side only.
+- [ ] Require seller identity checks appropriate to risk and record the method, timestamp and result; never expose identity documents publicly.
+- [ ] Verify control/ownership evidence for each asset type and show exactly what was checked, by whom and when.
+- [ ] Require manual moderation before publication; create audit logs for status, price, ownership evidence and admin actions.
+- [ ] Implement buyer enquiries and seller response flow with anti-spam/rate limits before public user-generated content.
+- [ ] For payments, use server-created orders, server-side signature verification, signed webhook validation, idempotency, reconciliation and a documented refund/dispute path.
+- [ ] Do not advertise escrow or hold seller proceeds unless the legal/payment-provider model explicitly supports it.
+- [ ] Test abuse cases: fake seller, stolen asset, duplicate listing, manipulated price, failed payment, webhook replay, refund, account takeover, XSS, CSRF, SQL injection, IDOR and admin privilege escalation.
+- [ ] Launch in stages: invite-only listings → limited pilot → public submissions → payments only after controls pass.
+
+### Recommended commercial sequence
+
+1. Free directory and seller discovery to learn which categories attract genuine demand.
+2. Manually moderated listings and buyer-seller contact; do not collect buyer funds yet.
+3. After repeat usage: optional featured listings with clear sponsored labels, subject to policy and disclosure.
+4. After legal, support and fraud controls: transaction fee or paid seller tools; validate the fee model before investing.
+5. Reinvest revenue into verification, customer support, monitoring, backups and reliable infrastructure before expensive growth campaigns.
+
+A checked identity, checked ownership evidence, reviewed listing, and a completed transaction are four different claims. Never combine them into a single blanket “100% verified” badge.
