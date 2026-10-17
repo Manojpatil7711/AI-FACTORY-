@@ -83,3 +83,25 @@ This starter is a front-end directory, not yet a production database-backed plat
 
 **AI FACTORY**  
 *Discover. Create. Automate.*
+
+
+## Phase 1 upgrade — Smart Directory
+
+Implemented on the `feature/phase-1-smart-directory` branch:
+
+- Side-by-side comparison for up to three directory entries (category, provider, description, tags, listed pricing label, official link).
+- Local Prompt Studio templates for Shorts scripts, blog outlines, image prompts, research plans, website plans and social posts.
+- Copy and text-file export for generated prompt templates.
+- No AI API calls, accounts, backend, or database added.
+- Prompt Studio clearly explains that it structures a prompt; it does not run the prompt or generate AI output itself.
+
+### Phase 1 validation checklist
+
+- [ ] Open homepage on desktop and mobile; verify Compare and Prompt Studio navigation.
+- [ ] Compare two and three tools; check links open the official providers.
+- [ ] Generate each prompt type, copy and download a prompt.
+- [ ] Verify existing search, category filters, sorting, saved tools and mobile menu remain functional.
+- [ ] Check browser console for JavaScript errors.
+- [ ] Review preview deployment before merging to `main`.
+
+This branch has not been merged or deployed to production.

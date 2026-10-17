@@ -49,6 +49,8 @@
       <a href="#explore">Explore Tools</a>
       <a href="#categories">Categories</a>
       <a href="#smart-finder">AI Finder</a>
+      <a href="#compare-tools">Compare</a>
+      <a href="#prompt-studio">Prompt Studio</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="header-cta" href="#explore">Find your AI <span aria-hidden="true">↗</span></a>
@@ -168,6 +170,47 @@
         </label>
         <button class="finder-submit" type="submit">Find my shortlist <span aria-hidden="true">→</span></button>
         <p class="finder-feedback" id="finder-feedback" aria-live="polite">No account needed. Your choices stay in this browser.</p>
+      </form>
+    </section>
+
+
+    <section class="section upgrade-section" id="compare-tools" aria-labelledby="compare-title">
+      <div class="section-heading">
+        <div><div class="eyebrow section-eyebrow">MAKE A CLEARER CHOICE</div><h2 id="compare-title">Compare your <span>shortlist.</span></h2><p>Compare up to three tools side by side. Pricing labels are indicative; confirm current plans with each provider.</p></div>
+      </div>
+      <div class="upgrade-panel">
+        <div class="compare-selects">
+          <label class="finder-field"><span>Tool one</span><select id="compare-one" aria-label="First tool to compare"></select></label>
+          <label class="finder-field"><span>Tool two</span><select id="compare-two" aria-label="Second tool to compare"></select></label>
+          <label class="finder-field"><span>Tool three (optional)</span><select id="compare-three" aria-label="Third tool to compare"><option value="">Skip third tool</option></select></label>
+        </div>
+        <div id="compare-results" class="compare-results" aria-live="polite"><p>Select tools to see their categories, descriptions and pricing labels.</p></div>
+      </div>
+    </section>
+
+    <section class="section upgrade-section" id="prompt-studio" aria-labelledby="prompt-title">
+      <div class="section-heading">
+        <div><div class="eyebrow section-eyebrow">NO API REQUIRED</div><h2 id="prompt-title">Prompt <span>Studio.</span></h2><p>Build a detailed prompt for your chosen task. Everything runs in your browser; no prompt is sent to an AI service.</p></div>
+      </div>
+      <form class="upgrade-panel prompt-form" id="prompt-form">
+        <div class="prompt-fields">
+          <label class="finder-field"><span>What are you creating?</span>
+            <select id="prompt-task">
+              <option value="shorts">YouTube Shorts script</option>
+              <option value="blog">Blog article outline</option>
+              <option value="image">AI image prompt</option>
+              <option value="research">Research plan</option>
+              <option value="website">Website project plan</option>
+              <option value="social">Social media post</option>
+            </select>
+          </label>
+          <label class="finder-field"><span>Audience</span><input id="prompt-audience" maxlength="120" placeholder="e.g. beginners, small business owners"></label>
+          <label class="finder-field"><span>Tone or style</span><input id="prompt-tone" maxlength="100" placeholder="e.g. clear, cinematic, friendly"></label>
+        </div>
+        <label class="finder-field"><span>Your idea or extra details</span><textarea id="prompt-details" rows="3" maxlength="1200" placeholder="Describe your goal, topic, constraints or key points…"></textarea></label>
+        <div class="prompt-actions"><button class="finder-submit" type="submit">Build my prompt <span aria-hidden="true">→</span></button><button class="show-more-button" id="prompt-copy" type="button" disabled>Copy prompt</button><button class="show-more-button" id="prompt-download" type="button" disabled>Download .txt</button></div>
+        <label class="finder-field prompt-output-label"><span>Generated prompt</span><textarea id="prompt-output" rows="8" readonly placeholder="Your structured prompt will appear here."></textarea></label>
+        <p class="finder-feedback" id="prompt-feedback" aria-live="polite">Template-based prompt builder. It does not generate AI content or call an external API.</p>
       </form>
     </section>
 

@@ -157,3 +157,21 @@
   .faq-list summary{font-size:16px;padding:18px 36px 18px 0}
   .faq-list details p{font-size:14px;padding-bottom:18px}
 }
+
+/* Phase 1: comparison and prompt studio */
+.upgrade-section{max-width:1180px;margin:0 auto;padding:74px 30px}
+.upgrade-panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:24px}
+.compare-selects,.prompt-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.finder-field input,.finder-field textarea,.finder-field select{width:100%;margin-top:8px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--text);padding:12px}
+.finder-field textarea{resize:vertical;min-height:82px}
+.compare-results{margin-top:20px;overflow-x:auto}
+.compare-table{width:100%;border-collapse:collapse;min-width:520px}
+.compare-table th,.compare-table td{padding:14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.compare-table th{color:var(--violet);font-size:13px}
+.compare-table td{font-size:14px}
+.compare-table a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+.prompt-form{display:grid;gap:18px}
+.prompt-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.prompt-actions button:disabled{opacity:.45;cursor:not-allowed}
+.prompt-output-label textarea{font-family:var(--mono);font-size:13px;line-height:1.7}
+@media(max-width:720px){.upgrade-section{padding:48px 18px}.upgrade-panel{padding:16px}.compare-selects,.prompt-fields{grid-template-columns:1fr}.compare-table th,.compare-table td{padding:10px}.prompt-actions>*{width:100%}}

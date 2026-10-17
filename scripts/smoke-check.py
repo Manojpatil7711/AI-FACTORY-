@@ -48,6 +48,10 @@ required_ids = {
     "finder-budget", "finder-feedback", "tool-grid", "results-count",
     "empty-state", "show-more-tools", "category-tabs", "sort-select", "reset-filters",
     "menu-toggle", "year",
+    "compare-one", "compare-two", "compare-three", "compare-results",
+    "prompt-form", "prompt-task", "prompt-audience", "prompt-tone",
+    "prompt-details", "prompt-output", "prompt-copy", "prompt-download",
+    "prompt-feedback",
 }
 missing = sorted(required_ids - page.ids)
 if missing:
