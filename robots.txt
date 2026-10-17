@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-# Add a Sitemap directive only after the final public site URL is confirmed.
+Sitemap: https://ai-factory-tools.pages.dev/sitemap.xml
