@@ -105,3 +105,39 @@ Implemented on the `feature/phase-1-smart-directory` branch:
 - [ ] Review preview deployment before merging to `main`.
 
 This branch has not been merged or deployed to production.
+
+
+## Marketplace MVP direction (October 2026)
+
+The product direction is evolving from a directory-only starter into a free-first discovery and digital-asset marketplace.
+
+### Positioning
+- Primary focus: discover AI tools and evaluate small AI products, agents and micro-SaaS businesses.
+- Secondary categories: websites, domains and digital products.
+- Differentiator: transparent listing status, evidence-backed seller claims, clear product costs/limits, and practical buyer guidance. Never label a listing "verified" unless the checks performed are documented.
+
+### Current preview status
+- The homepage introduces the planned marketplace and founding-seller contact route.
+- Seller enquiries use an email link; there is no database-backed submission form yet.
+- There are no user accounts, public asset listings, escrow, checkout or live payments.
+- The directory search remains client-side and does not save marketplace data.
+- Do not claim listings, transactions, revenue or verification results that have not happened.
+
+### Razorpay-ready payment plan
+Keep payments disabled until the marketplace has a custom domain, a secured server-side API, seller/buyer records, listing moderation, terms/refund policies, and an approved Razorpay account. Future integration should:
+1. Create orders on the server; never trust client-provided amounts.
+2. Keep Razorpay Key Secret and webhook secret in server-side environment secrets only.
+3. Verify checkout signatures server-side and verify webhook signatures against the raw request body.
+4. Make webhook handling idempotent; record payment state in the database and reconcile failures/refunds.
+5. Never store card data. Do not implement escrow or hold third-party seller funds unless the payment provider and applicable legal requirements explicitly support the model.
+6. Start with platform-owned fees such as featured listings; add marketplace split payouts only after checking Razorpay product eligibility, onboarding and compliance requirements.
+7. Keep a payment-provider adapter so the domain, database and UI do not depend on a hard-coded provider.
+
+### Free-first build sequence
+1. Validate demand and recruit real founding sellers.
+2. Build database-backed listings, moderation, search/filtering and buyer enquiries with server-side validation and row-level security.
+3. Add analytics, abuse controls, legal pages and backups.
+4. Add Razorpay test-mode checkout for platform-owned listing fees; test webhooks and failure/refund paths.
+5. Enable live payments only after account approval, domain verification and end-to-end tests.
+
+This roadmap is not a claim that payment integration or the database is already implemented.
