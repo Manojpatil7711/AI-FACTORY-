@@ -293,4 +293,50 @@ promptDownload.addEventListener("click",()=>{
 });
 
 
+// Respectful, first-party cross-promotion: no third-party ad scripts, no forced redirect.
+const crossPromo = document.getElementById("cross-promo");
+const crossPromoClose = document.getElementById("cross-promo-close");
+if (crossPromo && crossPromoClose) {
+  const dismissedKey = "ai-factory-cross-promo-dismissed";
+  let promoShown = false;
+  const showCrossPromo = () => {
+    if (promoShown || crossPromo.hidden) return;
+    promoShown = true;
+    crossPromo.hidden = false;
+    crossPromo.classList.add("is-visible");
+  };
+  try {
+    if (sessionStorage.getItem(dismissedKey) !== "1") {
+      crossPromo.hidden = true;
+      const revealAfterDelay = window.setTimeout(showCrossPromo, 20000);
+      const revealOnScroll = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        if (scrollable > 0 && window.scrollY / scrollable >= 0.55) {
+          window.clearTimeout(revealAfterDelay);
+          showCrossPromo();
+          window.removeEventListener("scroll", revealOnScroll);
+        }
+      };
+      window.addEventListener("scroll", revealOnScroll, {passive:true});
+      crossPromoClose.addEventListener("click", () => {
+        crossPromo.classList.remove("is-visible");
+        crossPromo.hidden = true;
+        window.clearTimeout(revealAfterDelay);
+        window.removeEventListener("scroll", revealOnScroll);
+        try { sessionStorage.setItem(dismissedKey, "1"); } catch {}
+      });
+    } else {
+      crossPromo.hidden = true;
+    }
+  } catch {
+    // If session storage is unavailable, still allow a delayed, dismissible promo.
+    window.setTimeout(showCrossPromo, 20000);
+    crossPromoClose.addEventListener("click", () => {
+      crossPromo.classList.remove("is-visible");
+      crossPromo.hidden = true;
+    });
+  }
+}
+
+
 renderTools();
