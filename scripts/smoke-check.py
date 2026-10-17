@@ -72,8 +72,8 @@ except ET.ParseError as exc:
     raise AssertionError(f"sitemap.xml is not valid XML: {exc}") from exc
 ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 sitemap_urls = [node.text for node in sitemap_root.findall("sm:url/sm:loc", ns)]
-if len(sitemap_urls) != 10:
-    raise AssertionError(f"Expected 10 sitemap URLs, found {len(sitemap_urls)}")
+if len(sitemap_urls) != 15:
+    raise AssertionError(f"Expected 15 sitemap URLs, found {len(sitemap_urls)}")
 if len(sitemap_urls) != len(set(sitemap_urls)):
     raise AssertionError("Duplicate sitemap URLs found")
 if any(not url.startswith("https://ai-factory-tools.pages.dev/") for url in sitemap_urls):
@@ -81,6 +81,24 @@ if any(not url.startswith("https://ai-factory-tools.pages.dev/") for url in site
 robots = (root / "robots.txt").read_text(encoding="utf-8")
 if "Sitemap: https://ai-factory-tools.pages.dev/sitemap.xml" not in robots:
     raise AssertionError("robots.txt must point to the stable canonical sitemap")
+
+tool_pages = sorted(root.glob("tool-*.html"))
+if len(tool_pages) != 5:
+    raise AssertionError(f"Expected 5 individual tool guides, found {len(tool_pages)}")
+for tool_page in tool_pages:
+    source = tool_page.read_text(encoding="utf-8")
+    parser = PageParser()
+    parser.feed(source)
+    if parser.h1_count != 1 or parser.title_count != 1:
+        raise AssertionError(f"{tool_page.name} must contain exactly one H1 and one title")
+    if not parser.canonical or not parser.canonical.endswith("/" + tool_page.name):
+        raise AssertionError(f"{tool_page.name} must have its own canonical URL")
+    if parser.json_ld_count < 2:
+        raise AssertionError(f"{tool_page.name} must include WebPage and FAQ structured data")
+    if "getting-started" not in source or "faq-list" not in source:
+        raise AssertionError(f"{tool_page.name} is missing practical guide content")
+    if tool_page.name not in sitemap_paths:
+        raise AssertionError(f"{tool_page.name} missing from sitemap")
 
 category_pages = sorted(root.glob("category-*.html"))
 if len(category_pages) != 7:
@@ -122,5 +140,5 @@ if bad_urls:
 print(
     f"Smoke checks passed: {len(records)} unique tools, required UI IDs, local assets, "
     f"7 category pages with canonical/structured data/FAQs, deploy inclusion, "
-    f"{len(sitemap_urls)} valid sitemap URLs and HTTPS official links."
+    f"{len(tool_pages)} individual tool guides, {len(sitemap_urls)} valid sitemap URLs and HTTPS official links."
 )
