@@ -3,167 +3,83 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b0b12">
-  <meta name="description" content="Explore the AI FACTORY marketplace preview for AI products, agents, micro-SaaS and websites. Review the planned buyer and seller safeguards before public listings open.">
-  <meta property="og:title" content="AI FACTORY Marketplace — Built Around Trust">
-  <meta property="og:description" content="A planned marketplace for AI products and digital businesses, with clear listing status and evidence-led checks.">
+  <meta name="theme-color" content="#f7f7fb">
+  <meta name="description" content="Discover AI tools and explore a planned marketplace for AI products, micro-SaaS, websites and digital products.">
+  <meta property="og:title" content="AI FACTORY Marketplace">
+  <meta property="og:description" content="A clearer way to explore and prepare to buy or sell digital assets.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="AI FACTORY">
   <link rel="canonical" href="https://ai-factory-tools.pages.dev/marketplace.html">
-  <title>Marketplace Preview | AI FACTORY</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>Marketplace | AI FACTORY</title>
   <style>
-    :root{color-scheme:dark;--bg:#0b0b12;--panel:#13131e;--panel2:#191927;--line:#2d2b40;--text:#f7f6fc;--muted:#aaa8be;--violet:#b6a3ff;--green:#9ce7c0;--amber:#ffd19a;--font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#272044 0,transparent 36%),var(--bg);color:var(--text);font:15px/1.65 var(--font)}a{color:inherit;text-decoration:none}button,a{touch-action:manipulation}a:focus-visible,button:focus-visible{outline:2px solid var(--violet);outline-offset:4px}.wrap{width:min(1120px,calc(100% - 40px));margin:auto}.header{height:76px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{font-size:16px;font-weight:700;letter-spacing:-.4px}.brand b{color:var(--violet)}.nav{display:flex;align-items:center;gap:22px;color:var(--muted);font-size:13px}.nav a:hover{color:#fff}.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid #4b4567;border-radius:10px;padding:11px 15px;font-weight:700;font-size:13px;background:#1d1a2d}.button.primary{background:var(--violet);border-color:var(--violet);color:#151122}.button:hover{filter:brightness(1.1)}.hero{padding:78px 0 50px;max-width:850px}.eyebrow{color:var(--green);font-size:11px;letter-spacing:1.7px;text-transform:uppercase;font-weight:700}.hero h1{font-size:clamp(42px,7vw,72px);letter-spacing:-3.5px;line-height:1.04;margin:20px 0}.hero h1 span{background:linear-gradient(90deg,var(--violet),#8dc4ff,var(--green));background-clip:text;-webkit-background-clip:text;color:transparent}.hero p{max-width:700px;color:var(--muted);font-size:17px}.notice{margin:22px 0 0;padding:15px 17px;border:1px solid #7d633d;border-radius:12px;background:#2b2117;color:#f5d8ae;font-size:13px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}.section{padding:42px 0}.section h2{font-size:clamp(25px,4vw,38px);line-height:1.15;letter-spacing:-1.2px;margin:0 0 12px}.lead{color:var(--muted);max-width:740px;margin:0 0 25px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:linear-gradient(150deg,#181827,#11111a);border:1px solid var(--line);border-radius:16px;padding:22px;min-width:0}.icon{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:#2b2542;color:var(--violet);font-size:19px}.card h3{font-size:17px;margin:15px 0 7px}.card p{color:var(--muted);font-size:13px;margin:0}.steps{counter-reset:step;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.step{counter-increment:step;padding:18px;border-top:1px solid #4a4266;background:#14131f;border-radius:0 0 12px 12px}.step:before{content:"0" counter(step);font-size:11px;color:var(--green);font-weight:800;letter-spacing:1px}.step h3{font-size:15px;margin:11px 0 6px}.step p{font-size:12px;color:var(--muted);margin:0}.status-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.status{padding:18px;border:1px solid var(--line);border-radius:12px;background:#11111a}.status strong{display:block;margin-bottom:5px}.status p{font-size:13px;color:var(--muted);margin:0}.pill{display:inline-block;border:1px solid #57506d;color:#d5ccff;padding:3px 8px;border-radius:30px;font-size:10px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px}.empty{padding:34px 22px;text-align:center;border:1px dashed #4b4567;border-radius:16px;background:#11111a}.empty h3{margin:0 0 7px}.empty p{margin:0 auto 18px;max-width:540px;color:var(--muted);font-size:13px}.footer{border-top:1px solid #ffffff14;padding:25px 0 36px;color:#8d8ba2;font-size:12px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}.footer a{text-decoration:underline;text-underline-offset:3px}
-
-    .choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0}
-    .choice{display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:8px;min-height:132px;padding:18px;border:1px solid var(--line);border-radius:14px;background:#13131e;color:var(--text);cursor:pointer;font:inherit}
-    .choice strong{font-size:14px}.choice span{font-size:12px;color:var(--muted)}.choice[aria-pressed="true"]{border-color:var(--violet);background:#211b34;box-shadow:0 0 0 1px #b6a3ff35}
-    .guide-panel{border:1px solid #4a4266;border-radius:16px;background:linear-gradient(135deg,#1a1728,#11111a);padding:22px;margin-top:14px}
-    .guide-panel h3{margin:0 0 7px}.guide-panel p{color:var(--muted);margin:0 0 12px;font-size:13px}.guide-panel ul{padding-left:20px;color:#e0deeb;font-size:13px}.guide-panel li{margin:6px 0}
-    .verify-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.verify-item{padding:15px;border:1px solid var(--line);border-radius:12px;background:#11111a}.verify-item b{display:block;font-size:13px;margin-bottom:4px}.verify-item span{font-size:12px;color:var(--muted)}
-    .small-note{font-size:12px;color:var(--muted);margin-top:14px}.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
-    @media(max-width:760px){.choice-grid{grid-template-columns:1fr}.choice{min-height:auto}.verify-list{grid-template-columns:1fr}}
-\n    @media(max-width:760px){.wrap{width:min(100% - 28px,1120px)}.header{height:auto;min-height:68px;flex-wrap:wrap;padding:13px 0}.nav{order:3;width:100%;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px}.header>.button{padding:9px 10px}.hero{padding:56px 0 35px}.grid{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.status-grid{grid-template-columns:1fr}.section{padding:30px 0}.hero h1{letter-spacing:-2.4px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+    :root{color-scheme:light;--bg:#f7f7fb;--paper:#fff;--ink:#191827;--muted:#686779;--line:#e7e6ef;--purple:#6048e8;--purple-dark:#4834c5;--soft:#f0edff;--green:#176b4d;--green-soft:#e8f6ef;--amber:#80520b;--amber-soft:#fff5df;--shadow:0 12px 34px #2820440b;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:84px}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 var(--font);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button,a{touch-action:manipulation}a:focus-visible,button:focus-visible{outline:3px solid #8e7aff;outline-offset:3px}.wrap{width:min(1080px,calc(100% - 40px));margin:auto}.header{height:76px;display:flex;align-items:center;justify-content:space-between;gap:22px;border-bottom:1px solid var(--line)}.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:17px;letter-spacing:-.6px;white-space:nowrap}.mark{display:grid;place-items:center;width:32px;height:32px;border-radius:10px;background:var(--purple);color:white;font-size:19px}.brand b{color:var(--purple)}.nav{display:flex;align-items:center;gap:25px;color:var(--muted);font-size:13px}.nav a:hover{color:var(--purple)}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:11px 16px;border:1px solid var(--line);border-radius:11px;background:white;font-size:13px;font-weight:750;transition:transform .15s,background .15s}.btn:hover{transform:translateY(-1px)}.btn-primary{background:var(--purple);border-color:var(--purple);color:#fff}.btn-primary:hover{background:var(--purple-dark)}.hero{padding:64px 0 36px;max-width:850px}.eyebrow{display:flex;align-items:center;gap:8px;color:var(--purple);font-size:11px;font-weight:800;letter-spacing:1.35px;text-transform:uppercase}.eyebrow:before{content:"";width:7px;height:7px;border-radius:50%;background:#8d7cff}.hero h1{max-width:760px;margin:15px 0 13px;font-size:clamp(38px,6vw,62px);line-height:1.04;letter-spacing:-2.9px}.hero h1 span{color:var(--purple)}.hero-copy{max-width:650px;margin:0;color:var(--muted);font-size:16px}.preview-note{display:flex;align-items:flex-start;gap:12px;margin-top:24px;padding:13px 15px;border:1px solid #f0dba9;border-radius:12px;background:var(--amber-soft);color:#68470e;font-size:12px}.preview-note strong{display:block;margin-bottom:2px;font-size:13px}.notice-icon{display:grid;place-items:center;flex:0 0 24px;width:24px;height:24px;border-radius:8px;background:#f4e4b9;font-weight:900}.section{padding:34px 0}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:18px}.section h2{margin:8px 0 0;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-1.1px}.subcopy{max-width:650px;margin:8px 0 0;color:var(--muted);font-size:14px}.path-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.path-card{position:relative;display:flex;flex-direction:column;min-height:225px;padding:25px;border:1px solid var(--line);border-radius:18px;background:var(--paper);box-shadow:var(--shadow);transition:border-color .15s,transform .15s}.path-card:hover{transform:translateY(-2px);border-color:#c9c0ff}.path-card.sell{background:#f1efff;border-color:#e1dcff}.path-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.path-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:var(--soft);color:var(--purple);font-size:21px}.sell .path-icon{background:#fff}.path-label{color:var(--muted);font-size:10px;font-weight:800;letter-spacing:1.3px}.path-card h3{margin:17px 0 6px;font-size:23px;letter-spacing:-.6px}.path-card p{max-width:390px;margin:0 0 19px;color:var(--muted);font-size:13px}.path-link{display:inline-flex;align-items:center;gap:8px;margin-top:auto;color:var(--purple);font-size:13px;font-weight:800}.category-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.category{padding:19px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}.category-icon{display:grid;place-items:center;width:34px;height:34px;margin-bottom:13px;border-radius:10px;background:#f1efff;color:var(--purple);font-size:17px}.category h3{margin:0 0 5px;font-size:15px}.category p{margin:0;color:var(--muted);font-size:12px}.trust-panel{padding:25px;border:1px solid var(--line);border-radius:18px;background:var(--paper)}.trust-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:21px}.trust-step{padding-top:13px;border-top:2px solid #ded8ff}.step-number{color:var(--purple);font-size:11px;font-weight:850;letter-spacing:1px}.trust-step h3{margin:8px 0 5px;font-size:14px}.trust-step p{margin:0;color:var(--muted);font-size:12px}.trust-foot{margin:19px 0 0;padding-top:15px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.listings-empty{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:23px;border:1px dashed #d2cdef;border-radius:16px;background:#fbfaff}.empty-title{display:flex;align-items:center;gap:12px}.empty-icon{display:grid;place-items:center;flex:0 0 42px;width:42px;height:42px;border-radius:13px;background:var(--soft);color:var(--purple);font-size:20px}.empty-title h3{margin:0 0 3px;font-size:15px}.empty-title p{margin:0;color:var(--muted);font-size:12px}.footer{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:25px;padding:24px 0 34px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.footer-links{display:flex;gap:14px}.footer a:hover{color:var(--purple)}@media(max-width:760px){.wrap{width:calc(100% - 28px)}.header{height:auto;min-height:68px;flex-wrap:wrap;padding:12px 0;gap:12px}.nav{order:3;width:100%;justify-content:space-between;gap:12px;font-size:12px}.header>.btn{min-height:38px;padding:8px 11px}.hero{padding:44px 0 24px}.hero h1{letter-spacing:-1.9px}.hero-copy{font-size:15px}.section{padding:25px 0}.path-grid{grid-template-columns:1fr}.path-card{min-height:190px;padding:21px}.category-grid{grid-template-columns:1fr}.category{display:grid;grid-template-columns:38px 1fr;column-gap:12px;align-items:start;padding:15px}.category-icon{grid-row:span 2;margin:0}.category h3{align-self:end}.category p{align-self:start}.trust-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.trust-panel{padding:19px}.listings-empty{align-items:flex-start;flex-direction:column}.section-heading{align-items:flex-start;flex-direction:column}}@media(max-width:390px){.brand{font-size:15px}.nav{gap:8px;font-size:11px}.trust-grid{grid-template-columns:1fr}.footer{flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header class="header">
-      <a class="brand" href="./" aria-label="AI FACTORY home">✳ AI <b>FACTORY</b></a>
-      <nav class="nav" aria-label="Main navigation">
-        <a href="./">AI tools</a><a href="#how-it-works">How it works</a><a href="#trust">Trust & safety</a><a href="#listings">Listings</a>
-      </nav>
-      <a class="button" href="#sell">Sell an asset ↗</a>
+      <a class="brand" href="./" aria-label="AI FACTORY home"><span class="mark" aria-hidden="true">✳</span><span>AI <b>FACTORY</b></span></a>
+      <nav class="nav" aria-label="Main navigation"><a href="./">AI Tools</a><a href="#categories">Categories</a><a href="#trust">Trust & safety</a></nav>
+      <a class="btn btn-primary" href="#sell">Sell an asset <span aria-hidden="true">↗</span></a>
     </header>
     <main>
       <section class="hero">
-        <div class="eyebrow">Digital assets, with clearer decisions</div>
-        <h1>Buy smarter.<br><span>Sell with confidence.</span></h1>
-        <p>AI FACTORY is planning a focused marketplace for AI tools, AI agents, micro-SaaS products, websites and digital products. The goal is simple: make it easier to understand what is being offered, what has been checked, and what still needs independent verification.</p>
-        <div class="notice"><strong>Preview only — no transactions are enabled.</strong> There are no live asset listings, buyer checkout, escrow or seller payouts on this page. Never send money to anyone claiming to sell through AI FACTORY during this preview.</div>
-        <div class="actions"><a class="button primary" href="#listings">Explore listing status ↓</a><a class="button" href="#how-it-works">Understand the process</a></div>
+        <div class="eyebrow">The digital asset marketplace</div>
+        <h1>What brings you to <span>AI FACTORY?</span></h1>
+        <p class="hero-copy">Discover useful AI products, or prepare to sell a digital asset. Choose your path first — we’ll keep the next steps clear.</p>
+        <div class="preview-note"><span class="notice-icon" aria-hidden="true">!</span><div><strong>Marketplace preview — buying and selling are not live yet.</strong>No live listings, checkout, escrow or payouts are available. Do not send money to anyone claiming to sell through AI FACTORY.</div></div>
       </section>
-      <section class="section" aria-labelledby="categories-title">
-        <h2 id="categories-title">One simple place for digital assets</h2>
-        <p class="lead">Designed for first-time buyers and independent builders, without pretending every asset is equally safe or every seller is already verified.</p>
-        <div class="grid">
-          <article class="card"><div class="icon" aria-hidden="true">✳</div><h3>AI tools & agents</h3><p>Products that help people create, research, automate, build or work more efficiently.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true">⌘</div><h3>Micro-SaaS & websites</h3><p>Small software businesses and websites, with clear information about ownership, traffic evidence and recurring costs where applicable.</p></article>
-          <article class="card"><div class="icon" aria-hidden="true">◇</div><h3>Digital products</h3><p>Templates, code, workflows and other digital goods with explicit delivery terms and licensing details.</p></article>
+
+      <section class="section" aria-labelledby="path-title">
+        <div class="section-heading"><div><div class="eyebrow">Choose your path</div><h2 id="path-title">What would you like to do?</h2><p class="subcopy">Two clear starting points. No confusing menus or long instructions.</p></div></div>
+        <div class="path-grid">
+          <article class="path-card">
+            <div class="path-top"><span class="path-icon" aria-hidden="true">⌕</span><span class="path-label">FOR BUYERS</span></div>
+            <h3>I want to buy</h3>
+            <p>Explore AI tools, ready-made software, websites and digital products. Learn what to check before making a decision.</p>
+            <a class="path-link" href="#categories">Explore asset types <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="path-card sell" id="sell">
+            <div class="path-top"><span class="path-icon" aria-hidden="true">↗</span><span class="path-label">FOR SELLERS</span></div>
+            <h3>I want to sell</h3>
+            <p>Share your product type and get the preparation checklist for a possible future listing. No account or documents needed now.</p>
+            <a class="path-link" href="mailto:Manojpatil7711@gmail.com?subject=AI%20FACTORY%20Seller%20Enquiry&body=Hello%20AI%20FACTORY%2C%0A%0AI%20am%20interested%20in%20a%20possible%20future%20listing.%0AAsset%20type%3A%0AProduct%20or%20demo%20URL%3A%0AShort%20description%3A%0A%0AI%20understand%20the%20marketplace%20is%20not%20live%20yet.">Seller enquiry <span aria-hidden="true">→</span></a>
+          </article>
         </div>
       </section>
 
-      <section class="section" id="choose-your-path" aria-labelledby="choose-title">
-        <div class="eyebrow">Start with your goal</div>
-        <h2 id="choose-title">What do you want to do?</h2>
-        <p class="lead">Choose one option. We’ll show the right next steps in plain language. This guide is a preview and does not submit or save your information.</p>
-        <div class="choice-grid" role="group" aria-label="Choose buyer or seller journey">
-          <button class="choice" type="button" data-path="buy" aria-pressed="true"><span aria-hidden="true">01 · BUY</span><strong>I want to buy something</strong><span>Find a tool, AI agent, website or digital product.</span></button>
-          <button class="choice" type="button" data-path="sell" aria-pressed="false"><span aria-hidden="true">02 · SELL</span><strong>I want to sell my product</strong><span>Prepare your profile, evidence and listing details.</span></button>
-          <button class="choice" type="button" data-path="learn" aria-pressed="false"><span aria-hidden="true">03 · EXPLORE</span><strong>I’m not sure yet</strong><span>Compare asset types and learn what to check first.</span></button>
-        </div>
-        <div class="guide-panel" id="path-guide" aria-live="polite">
-          <h3>Buyer guide: choose the right asset</h3>
-          <p>Start by choosing what you need, then compare the total cost, ownership evidence, included items and support terms before paying.</p>
-          <div class="choice-grid" role="group" aria-label="Choose the type of asset to buy">
-            <button class="choice" type="button" data-asset="ai" aria-pressed="true"><strong>AI tool or agent</strong><span>For writing, research, automation or content.</span></button>
-            <button class="choice" type="button" data-asset="saas" aria-pressed="false"><strong>Website or micro-SaaS</strong><span>For buying an existing digital business.</span></button>
-            <button class="choice" type="button" data-asset="digital" aria-pressed="false"><strong>Code or digital product</strong><span>For templates, code, workflows or files.</span></button>
-          </div>
-          <div id="asset-guide">
-            <ul><li>Check what the tool actually does and whether a demo is available.</li><li>Confirm free limits, recurring fees, data handling and cancellation terms.</li><li>Do not share passwords or send money outside an officially supported transaction flow.</li></ul>
-          </div>
-          <p class="small-note">Buyer protection reminder: a profile or listing check is not a guarantee of quality, income, legal ownership or future performance.</p>
+      <section class="section" id="categories" aria-labelledby="categories-title">
+        <div class="section-heading"><div><div class="eyebrow">Browse by asset type</div><h2 id="categories-title">What are you looking for?</h2><p class="subcopy">Start with the kind of digital asset you need.</p></div></div>
+        <div class="category-grid">
+          <article class="category"><span class="category-icon" aria-hidden="true">✳</span><h3>AI tools & agents</h3><p>Writing, design, research, coding and automation tools.</p></article>
+          <article class="category"><span class="category-icon" aria-hidden="true">⌘</span><h3>Websites & micro-SaaS</h3><p>Websites and small software businesses, with costs and ownership evidence to review.</p></article>
+          <article class="category"><span class="category-icon" aria-hidden="true">◇</span><h3>Digital products</h3><p>Templates, code, workflows and downloadable resources.</p></article>
         </div>
       </section>
 
-      <section class="section" id="profile-verification" aria-labelledby="profile-title">
-        <div class="eyebrow">Clear identity. Clear evidence.</div>
-        <h2 id="profile-title">Profile verification — visible and honest</h2>
-        <p class="lead">Buyer and seller profiles must show only the checks actually completed. A verified profile does not automatically mean a product is safe, profitable or legally transferable.</p>
-        <div class="verify-list">
-          <div class="verify-item"><b>1. Email / contact confirmed</b><span>Confirms access to a contact method. It is not proof of legal identity.</span></div>
-          <div class="verify-item"><b>2. Identity checked</b><span>For sellers and higher-risk actions, use a suitable provider/process; keep documents private and access-restricted.</span></div>
-          <div class="verify-item"><b>3. Asset ownership evidence</b><span>Check relevant domain, product, code or account control; record scope and date of review.</span></div>
-          <div class="verify-item"><b>4. Listing reviewed</b><span>Review claims, price, rights, included assets, costs and transfer requirements before publishing.</span></div>
-        </div>
-        <div class="notice"><strong>Important:</strong> These are planned verification stages, not live verification services. This preview does not collect identity documents, store profiles or issue verification badges.</div>
-      </section>
-\n      <section class="section" id="how-it-works" aria-labelledby="process-title">
-        <h2 id="process-title">A safer process, step by step</h2>
-        <p class="lead">These are the planned controls. They must be implemented and tested before the marketplace accepts payments.</p>
-        <div class="steps">
-          <article class="step"><h3>Seller identity</h3><p>Confirm contact details and apply proportionate identity/business checks before granting verified status.</p></article>
-          <article class="step"><h3>Ownership evidence</h3><p>Review control of the domain, product, code or account being offered. Do not rely on screenshots alone.</p></article>
-          <article class="step"><h3>Listing review</h3><p>Check claims, price, included assets, recurring costs, restrictions and known risks; record what was actually checked.</p></article>
-          <article class="step"><h3>Protected transaction</h3><p>Only launch checkout after legal, payment-provider, server-side verification, refund and dispute flows are ready.</p></article>
-        </div>
-      </section>
       <section class="section" id="trust" aria-labelledby="trust-title">
-        <h2 id="trust-title">Trust labels must mean something</h2>
-        <p class="lead">A badge is not a guarantee. Each status must explain the checks completed and the limits of those checks.</p>
-        <div class="status-grid">
-          <div class="status"><span class="pill">Submitted</span><strong>Received, not approved</strong><p>The seller sent details. No public quality, ownership or identity claim is implied.</p></div>
-          <div class="status"><span class="pill">Reviewed</span><strong>Basic listing checks completed</strong><p>Moderation checks are recorded. Buyers should still do their own due diligence.</p></div>
-          <div class="status"><span class="pill">Identity checked</span><strong>Identity check only</strong><p>Means the stated identity was checked using a documented method—not that the asset is profitable or risk-free.</p></div>
-          <div class="status"><span class="pill">Ownership evidence checked</span><strong>Evidence reviewed for a stated scope</strong><p>Records which control evidence was checked and when. It is not a legal title guarantee.</p></div>
+        <div class="trust-panel">
+          <div class="eyebrow">Trust & safety</div><h2 id="trust-title">Know what has actually been checked.</h2>
+          <p class="subcopy">A badge should explain a specific check — never promise that an asset is risk-free.</p>
+          <div class="trust-grid">
+            <article class="trust-step"><span class="step-number">01 / CONTACT</span><h3>Contact confirmed</h3><p>Confirms access to an email or contact method. Not legal identity.</p></article>
+            <article class="trust-step"><span class="step-number">02 / IDENTITY</span><h3>Identity checked</h3><p>Only shown after a documented identity check is actually completed.</p></article>
+            <article class="trust-step"><span class="step-number">03 / OWNERSHIP</span><h3>Ownership evidence</h3><p>Records which control evidence was reviewed and when.</p></article>
+            <article class="trust-step"><span class="step-number">04 / LISTING</span><h3>Listing reviewed</h3><p>Checks claims, price, rights, included items and recurring costs.</p></article>
+          </div>
+          <p class="trust-foot"><strong>Not live yet:</strong> These verification stages are planned, not active services. No profiles are stored and no verification badges are issued on this preview. Verification can reduce risk, but cannot guarantee a safe or profitable purchase.</p>
         </div>
       </section>
+
       <section class="section" id="listings" aria-labelledby="listings-title">
-        <h2 id="listings-title">Public listings will open only after checks</h2>
-        <div class="empty">
-          <h3>No public marketplace listings yet</h3>
-          <p>This is intentional. We will not fill the page with invented sellers, fake reviews, made-up prices or unverified “verified” badges just to make the marketplace look busy.</p>
-          <a class="button" href="./">Browse the AI tools directory ↗</a>
-        </div>
-      </section>
-      <section class="section" id="sell" aria-labelledby="sell-title">
-        <h2 id="sell-title">Are you building something useful?</h2>
-        <p class="lead">Early sellers can share feedback while the rules, verification steps and listing requirements are being developed. This contact is an enquiry—not a live listing or a promise of approval.</p>
-        <a class="button primary" href="mailto:Manojpatil7711@gmail.com?subject=AI%20FACTORY%20Marketplace%20Early%20Seller%20Enquiry&body=Hello%20AI%20FACTORY%2C%0A%0AI%20would%20like%20to%20discuss%20a%20possible%20future%20listing.%0AAsset%20type%3A%0AProduct%20or%20demo%20URL%3A%0AWhat%20would%20be%20included%3A%0A%0AI%20understand%20the%20marketplace%20is%20not%20live%20and%20no%20transaction%20or%20verification%20is%20being%20offered%20yet.">Contact the founding team ↗</a>
+        <div class="section-heading"><div><div class="eyebrow">Listings</div><h2 id="listings-title">We’ll open when it’s ready.</h2></div></div>
+        <div class="listings-empty"><div class="empty-title"><span class="empty-icon" aria-hidden="true">◇</span><div><h3>No public listings yet</h3><p>We won’t invent sellers, prices or reviews to make the marketplace look busy.</p></div></div><a class="btn" href="./">Explore AI tools directory ↗</a></div>
       </section>
     </main>
-    <footer class="footer"><span>© <span id="year">2026</span> AI FACTORY · Preview, not a live trading service.</span><span><a href="./privacy.html">Privacy</a> · <a href="./terms.html">Terms</a> · <a href="./">AI tools directory</a></span></footer>
+    <footer class="footer"><span>© <span id="year">2026</span> AI FACTORY · Marketplace preview</span><span class="footer-links"><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a><a href="./">AI tools</a></span></footer>
   </div>
-  <script>
-    document.getElementById("year").textContent = String(new Date().getFullYear());
-    const pathGuide = document.getElementById("path-guide");
-    const pathButtons = [...document.querySelectorAll("[data-path]")];
-    const buyerGuide = `
-      <h3>Buyer guide: choose the right asset</h3>
-      <p>Start by choosing what you need, then compare the total cost, ownership evidence, included items and support terms before paying.</p>
-      <div class="choice-grid" role="group" aria-label="Choose the type of asset to buy">
-        <button class="choice" type="button" data-asset="ai" aria-pressed="true"><strong>AI tool or agent</strong><span>For writing, research, automation or content.</span></button>
-        <button class="choice" type="button" data-asset="saas" aria-pressed="false"><strong>Website or micro-SaaS</strong><span>For buying an existing digital business.</span></button>
-        <button class="choice" type="button" data-asset="digital" aria-pressed="false"><strong>Code or digital product</strong><span>For templates, code, workflows or files.</span></button>
-      </div>
-      <div id="asset-guide"><ul><li>Check what the tool actually does and whether a demo is available.</li><li>Confirm free limits, recurring fees, data handling and cancellation terms.</li><li>Do not share passwords or send money outside an officially supported transaction flow.</li></ul></div>
-      <p class="small-note">A profile or listing check is not a guarantee of quality, income, legal ownership or future performance.</p>`;
-    const guides = {
-      buy: buyerGuide,
-      sell: `<h3>Seller guide: prepare before you list</h3><p>Public selling is not open yet. Prepare the information below; do not send passwords, private keys or identity documents by email.</p><ul><li>Use a contact method you control and complete the planned profile checks when available.</li><li>Prepare a working demo, accurate description, price, included assets and support terms.</li><li>Gather appropriate ownership/control evidence and explain any third-party licences or recurring costs.</li><li>Disclose limitations, known issues, revenue/traffic evidence methods and what can legally be transferred.</li><li>Wait for moderation approval; never claim “verified” before the platform confirms the exact check.</li></ul><p class="small-note">No listing is submitted or saved from this preview.</p>`,
-      learn: `<h3>Explore safely before deciding</h3><p>Choose an asset category, write down the problem you want solved and compare at least two options.</p><ul><li>For AI tools: test the demo and check limits, privacy and subscription cost.</li><li>For websites or micro-SaaS: examine ownership, traffic/revenue evidence, operating costs and transferability.</li><li>For digital products: confirm the licence, file list, update policy and permitted use.</li><li>Ask questions in writing and pause if anyone pressures you to pay urgently.</li></ul><p class="small-note">The marketplace is still a preview; there are no approved live offers to buy.</p>`
-    };
-    function renderPath(path) {
-      pathButtons.forEach(button => button.setAttribute("aria-pressed", String(button.dataset.path === path)));
-      pathGuide.innerHTML = guides[path] || guides.buy;
-      pathGuide.querySelectorAll("[data-asset]").forEach(button => button.addEventListener("click", () => renderAsset(button.dataset.asset)));
-    }
-    function renderAsset(asset) {
-      const descriptions = {
-        ai: ["AI tool or agent checklist", ["Check the actual demo and feature limits.", "Confirm subscription cost, privacy/data use and cancellation.", "Check whether support and updates are included."]],
-        saas: ["Website or micro-SaaS checklist", ["Ask for read-only evidence of ownership, traffic and revenue claims where relevant.", "Confirm domain, code, hosting, licences, recurring expenses and transfer steps.", "Never treat screenshots alone as proof; use an independent professional for significant purchases."]],
-        digital: ["Code or digital product checklist", ["Confirm exactly which files, source code and documentation are included.", "Check the licence, resale rights, third-party dependencies and update terms.", "Use malware scanning and inspect code before deploying it in a real environment."]]
-      };
-      const item = descriptions[asset] || descriptions.ai;
-      document.querySelectorAll("[data-asset]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.asset === asset)));
-      const target = document.getElementById("asset-guide");
-      if (target) target.innerHTML = "<h3>" + item[0] + "</h3><ul>" + item[1].map(line => "<li>" + line + "</li>").join("") + "</ul>";
-    }
-    pathButtons.forEach(button => button.addEventListener("click", () => renderPath(button.dataset.path)));
-    document.querySelectorAll("[data-asset]").forEach(button => button.addEventListener("click", () => renderAsset(button.dataset.asset)));
-  </script>
+  <script>document.getElementById("year").textContent=String(new Date().getFullYear());</script>
 </body>
 </html>
