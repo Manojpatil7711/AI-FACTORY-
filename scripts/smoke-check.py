@@ -51,7 +51,7 @@ required_ids = {
     "compare-one", "compare-two", "compare-three", "compare-results",
     "prompt-form", "prompt-task", "prompt-audience", "prompt-tone",
     "prompt-details", "prompt-output", "prompt-copy", "prompt-download",
-    "prompt-feedback",
+    "prompt-feedback", "cross-promo", "cross-promo-close",
 }
 missing = sorted(required_ids - page.ids)
 if missing:
@@ -62,6 +62,13 @@ for asset in page.assets:
         continue
     if not (root / asset).is_file():
         raise AssertionError(f"Missing local asset: {asset}")
+
+if "https://gettoolora.in/" not in html or "https://vidzora-pi.vercel.app/" not in html:
+    raise AssertionError("Cross-promotion must link to the official Toolora and Vidzora sites")
+if "ai-factory-cross-promo-dismissed" not in js or "20000" not in js or "0.55" not in js:
+    raise AssertionError("Cross-promotion must be delayed, dismissible, and scroll-aware")
+if "prefers-reduced-motion:reduce" not in (root / "styles.css").read_text(encoding="utf-8"):
+    raise AssertionError("Cross-promotion must respect reduced-motion preferences")
 
 sitemap_path = root / "sitemap.xml"
 if not sitemap_path.is_file():
