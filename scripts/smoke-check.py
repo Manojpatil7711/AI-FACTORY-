@@ -82,6 +82,12 @@ robots = (root / "robots.txt").read_text(encoding="utf-8")
 if "Sitemap: https://ai-factory-tools.pages.dev/sitemap.xml" not in robots:
     raise AssertionError("robots.txt must point to the stable canonical sitemap")
 
+category_pages = sorted(root.glob("category-*.html"))
+if len(category_pages) != 7:
+    raise AssertionError(f"Expected 7 category pages, found {len(category_pages)}")
+if "cp category-*.html tool-*.html dist/" not in deploy_workflow:
+    raise AssertionError("Production deployment workflow must copy all category pages into dist/")
+sitemap_paths = {urlparse(url).path.lstrip("/") for url in sitemap_urls}
 tool_pages = sorted(root.glob("tool-*.html"))
 if len(tool_pages) != 5:
     raise AssertionError(f"Expected 5 individual tool guides, found {len(tool_pages)}")
@@ -100,12 +106,6 @@ for tool_page in tool_pages:
     if tool_page.name not in sitemap_paths:
         raise AssertionError(f"{tool_page.name} missing from sitemap")
 
-category_pages = sorted(root.glob("category-*.html"))
-if len(category_pages) != 7:
-    raise AssertionError(f"Expected 7 category pages, found {len(category_pages)}")
-if "cp category-*.html dist/" not in deploy_workflow:
-    raise AssertionError("Production deployment workflow must copy all category pages into dist/")
-sitemap_paths = {urlparse(url).path.lstrip("/") for url in sitemap_urls}
 for category_page in category_pages:
     filename = category_page.name
     if filename not in sitemap_paths:
