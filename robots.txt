@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://feature-smart-ai-finder.ai-factory-tools.pages.dev/sitemap.xml
+Sitemap: https://ai-factory-tools.pages.dev/sitemap.xml
