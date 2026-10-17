@@ -119,7 +119,7 @@ function searchTermMatches(term, searchable) {
   return variants.some(variant => searchable.includes(variant));
 }
 function renderTools() {
-  const normalized = query.trim().toLowerCase().replace(/[^\\p{L}\\p{N}\\s-]/gu, " ").replace(/\\s+/g, " ").trim();
+  const normalized = query.trim().toLowerCase().replace(/[^\p{L}\p{N}\s-]/gu, " ").replace(/\s+/g, " ").trim();
   const terms = normalized.split(" ").filter(term => term && !SEARCH_STOP_WORDS.has(term));
   let filtered = tools.filter(tool => {
     const categoryMatch = activeCategory === "All" || (activeCategory === "Saved" ? savedTools.has(tool.name) : tool.category === activeCategory);
