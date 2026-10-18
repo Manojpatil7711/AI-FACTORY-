@@ -35,6 +35,9 @@
       <h1>Razorpay payment test</h1>
       <p>Use this private test page to check the server-side checkout integration. The only available item is a simulated ₹1.00 test transaction; it is not a real marketplace product.</p>
       <div class="payment-test-alert"><strong>Safety:</strong> This page must use Razorpay Test API keys only. Live keys are rejected by the server. Never enter real card details, UPI PINs or OTPs here.</div>
+      <label for="payment-test-access-code">Private test access code</label>
+      <input id="payment-test-access-code" type="password" autocomplete="off" spellcheck="false" required aria-describedby="payment-test-access-help">
+      <p id="payment-test-access-help" class="payment-test-small">Set PAYMENT_TEST_ACCESS_CODE as a private Cloudflare secret, then enter the same code here. Do not share it in chat.</p>
       <div id="payment-test-status" class="payment-test-status" role="status" aria-live="polite">Checking test configuration…</div>
       <button id="payment-test-start" class="payment-test-button" type="button" disabled>Run ₹1 test checkout</button>
       <p class="payment-test-small">No checkout opens until the backend reports that test-only secrets and the D1 database are configured.</p>
@@ -52,6 +55,7 @@
       "use strict";
       const status = document.getElementById("payment-test-status");
       const start = document.getElementById("payment-test-start");
+      const accessCode = document.getElementById("payment-test-access-code");
       const setStatus = (message, state = "checking") => { status.textContent = message; status.dataset.state = state; };
       async function refreshStatus() {
         start.disabled = true;
@@ -69,11 +73,12 @@
       }
       start.addEventListener("click", async () => {
         start.disabled = true;
+        if (!accessCode.value) { setStatus("Enter the private test access code first.", "error"); start.disabled = false; accessCode.focus(); return; }
         setStatus("Creating a test order on the server…");
         try {
           const response = await fetch("/api/payments/create-order", {
             method: "POST", headers: { "content-type": "application/json", "accept": "application/json" },
-            body: JSON.stringify({ productId: "test-item", requestId: crypto.randomUUID() })
+            body: JSON.stringify({ productId: "test-item", requestId: crypto.randomUUID(), accessCode: accessCode.value })
           });
           const order = await response.json();
           if (!response.ok || !order.orderId || !order.keyId || !order.internalOrderId) throw new Error(order.error || "The server could not create a test order.");
