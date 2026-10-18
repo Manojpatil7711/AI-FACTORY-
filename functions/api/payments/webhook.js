@@ -20,6 +20,7 @@ export async function onRequestPost({ request, env }) {
   const expected = await hmacHex(env.RAZORPAY_WEBHOOK_SECRET, rawBody);
   if (!safeEqual(expected, signature.toLowerCase())) return json({ error: "Invalid webhook signature." }, 400);
   let event; try { event = JSON.parse(rawBody); } catch { return json({ error: "Invalid webhook JSON." }, 400); }
+  if (!event || typeof event !== "object" || Array.isArray(event)) return json({ error: "Webhook body must be a JSON object." }, 400);
   const eventType = typeof event.event === "string" ? event.event : "unknown";
   const payment = event.payload?.payment?.entity;
   try {
@@ -29,17 +30,17 @@ export async function onRequestPost({ request, env }) {
       await env.DB.prepare("INSERT OR IGNORE INTO razorpay_webhook_events (event_id, event_type) VALUES (?, ?)").bind(eventId, eventType).run();
       return json({ received: true, processed: false });
     }
-    if (eventType === "payment.captured" && payment.status === "captured" && payment.amount === 100 && payment.currency === "INR") {
+    if (eventType === "payment.captured" && typeof payment.id === "string" && payment.status === "captured" && payment.amount === 100 && payment.currency === "INR") {
       await env.DB.batch([
         env.DB.prepare("INSERT OR IGNORE INTO razorpay_webhook_events (event_id, event_type) VALUES (?, ?)").bind(eventId, eventType),
         env.DB.prepare("UPDATE payment_orders SET status = 'captured', razorpay_payment_id = ?, updated_at = strftime('%Y-%m-%dT%H:%M:%fZ','now') WHERE razorpay_order_id = ? AND amount_paise = 100 AND currency = 'INR'").bind(payment.id, payment.order_id)
       ]);
-    } else if (eventType === "payment.authorized" && payment.status === "authorized" && payment.amount === 100 && payment.currency === "INR") {
+    } else if (eventType === "payment.authorized" && typeof payment.id === "string" && payment.status === "authorized" && payment.amount === 100 && payment.currency === "INR") {
       await env.DB.batch([
         env.DB.prepare("INSERT OR IGNORE INTO razorpay_webhook_events (event_id, event_type) VALUES (?, ?)").bind(eventId, eventType),
         env.DB.prepare("UPDATE payment_orders SET status = 'authorized', razorpay_payment_id = ?, updated_at = strftime('%Y-%m-%dT%H:%M:%fZ','now') WHERE razorpay_order_id = ? AND amount_paise = 100 AND currency = 'INR' AND status != 'captured'").bind(payment.id, payment.order_id)
       ]);
-    } else if (eventType === "payment.failed" && payment.status === "failed") {
+    } else if (eventType === "payment.failed" && payment.status === "failed" && payment.amount === 100 && payment.currency === "INR") {
       await env.DB.batch([
         env.DB.prepare("INSERT OR IGNORE INTO razorpay_webhook_events (event_id, event_type) VALUES (?, ?)").bind(eventId, eventType),
         env.DB.prepare("UPDATE payment_orders SET status = 'failed', updated_at = strftime('%Y-%m-%dT%H:%M:%fZ','now') WHERE razorpay_order_id = ? AND status != 'captured'").bind(payment.order_id)
