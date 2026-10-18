@@ -84,6 +84,8 @@ if any(not url.startswith("https://ai-factory-tools.pages.dev/") for url in site
     raise AssertionError("Sitemap must use the stable canonical hostname, not a preview alias")
 
 expected_sitemap_paths = {"", "privacy.html", "terms.html"}
+if (root / "marketplace-india.html").is_file():
+    expected_sitemap_paths.add("marketplace-india.html")
 expected_sitemap_paths.update(path.name for path in root.glob("category-*.html"))
 expected_sitemap_paths.update(path.name for path in root.glob("tool-*.html"))
 if (root / "marketplace.html").is_file():
