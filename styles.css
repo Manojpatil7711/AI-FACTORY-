@@ -210,3 +210,30 @@
 @media(max-width:820px){.marketplace-grid{grid-template-columns:1fr 1fr}.marketplace-card:last-child{grid-column:1/-1}.seller-panel{align-items:flex-start;flex-direction:column}.seller-action{min-width:0}}
 @media(max-width:600px){.marketplace-section{padding:54px 18px 36px}.marketplace-grid,.marketplace-principles{grid-template-columns:1fr}.marketplace-card,.marketplace-card:last-child{grid-column:auto;min-height:220px}.marketplace-principles{gap:17px}.seller-section{padding:12px 18px 48px}.seller-panel{padding:22px}.marketplace-intro h2,.seller-panel h2{letter-spacing:-1.1px}}
 @media(prefers-reduced-motion:reduce){.marketplace-card{transition:none}.marketplace-card:hover{transform:none}}
+
+
+/* First-party cross-promotion: delayed, dismissible, low-motion-friendly. */
+.cross-promo[hidden]{display:none!important}
+.cross-promo{position:fixed;right:22px;bottom:22px;z-index:30;width:min(370px,calc(100vw - 28px));padding:18px;border:1px solid #49415f;border-radius:18px;background:linear-gradient(145deg,rgba(28,26,43,.98),rgba(15,15,24,.99));box-shadow:0 22px 70px #0009;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .24s ease,transform .24s ease;backdrop-filter:blur(14px)}
+.cross-promo.is-visible{opacity:1;transform:translateY(0);pointer-events:auto}
+.cross-promo-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.cross-promo-label{display:flex;align-items:center;gap:8px;color:#bdb1ff;font:500 10px var(--mono);letter-spacing:1.3px}
+.promo-dot{width:7px;height:7px;border-radius:50%;background:#9ce7c0;box-shadow:0 0 0 4px #9ce7c018;animation:promo-pulse 2.8s ease-in-out infinite}
+.cross-promo-close{width:32px;height:32px;border:1px solid #3b394c;border-radius:9px;background:#1c1a29;color:#c9c6d8;font-size:23px;line-height:1}
+.cross-promo-close:hover{border-color:#a78bfa;color:#fff}
+.cross-promo h2{margin:12px 0 2px;font:800 21px/1.25 var(--display);letter-spacing:-.6px}
+.cross-promo-intro{margin:0 0 12px;color:var(--muted);font-size:13px}
+.cross-promo-item{display:flex;align-items:center;gap:11px;padding:12px;border:1px solid #302e40;border-radius:12px;background:#ffffff05;margin-top:8px;transition:border-color .2s ease,background .2s ease}
+.cross-promo-item:hover{border-color:#8f7de2;background:#a78bfa0c}
+.cross-promo-icon{display:grid;place-items:center;width:38px;height:38px;flex:0 0 38px;border-radius:11px;font:800 20px var(--display)}
+.toolora-icon{background:#2c2447;color:#c8b9ff}.vidzora-icon{background:#163a3a;color:#9ce7c0}
+.cross-promo-copy{display:grid;gap:2px;min-width:0;flex:1}
+.cross-promo-copy b{font-size:14px}.cross-promo-copy small{color:var(--muted);font-size:11px;line-height:1.5}
+.cross-promo-arrow{color:#c2b1ff;font-size:18px}
+.cross-promo-footnote{margin:12px 0 0;color:#89879e;font-size:10px;line-height:1.5}
+@keyframes promo-pulse{0%,100%{opacity:.7;box-shadow:0 0 0 3px #9ce7c012}50%{opacity:1;box-shadow:0 0 0 6px #9ce7c01a}}
+@media(prefers-reduced-motion:reduce){.cross-promo,.cross-promo-item{transition:none}.promo-dot{animation:none}}
+@media(max-width:760px){.cross-promo{right:12px;bottom:12px;padding:15px;width:min(370px,calc(100vw - 24px))}.cross-promo h2{font-size:19px}}
+
+.tool-detail-link{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+.tool-detail-link:hover,.tool-detail-link:focus-visible{color:#c9bbff;border-color:#8f7de2}

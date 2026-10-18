@@ -20,8 +20,13 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p dist
-          cp index.html marketplace.html privacy.html terms.html styles.css app.js favicon.svg robots.txt sitemap.xml dist/
+          cp index.html privacy.html terms.html styles.css app.js favicon.svg robots.txt sitemap.xml dist/
           cp category-*.html dist/
+          for page in marketplace.html tool-*.html; do
+            if [ -f "$page" ]; then
+              cp "$page" dist/
+            fi
+          done
 
       - name: Check Cloudflare deployment secret
         id: credentials
