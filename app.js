@@ -83,12 +83,19 @@ function persistSavedTools() {
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
 }
+const TOOL_DETAIL_PATHS = {
+  "ChatGPT":"tool-chatgpt.html", "Claude":"tool-claude.html", "Gemini":"tool-gemini.html",
+  "Perplexity":"tool-perplexity.html", "Canva":"tool-canva.html", "CapCut":"tool-capcut.html",
+  "Runway":"tool-runway.html", "ElevenLabs":"tool-elevenlabs.html",
+  "GitHub Copilot":"tool-github-copilot.html", "NotebookLM":"tool-notebooklm.html"
+};
+
 function toolCard(tool) {
   const saved = savedTools.has(tool.name);
   return `<article class="tool-card">
     <div class="tool-card-top">
       <div class="tool-logo ${escapeHTML(tool.tone)}" aria-hidden="true"><img src="https://www.google.com/s2/favicons?domain_url=${encodeURIComponent(tool.url)}&amp;sz=128" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.hidden=true;this.nextElementSibling.hidden=false"><span hidden>${escapeHTML(tool.initials)}</span></div>
-      <div class="tool-title-wrap"><h3 class="tool-title">${escapeHTML(tool.name)}</h3><div class="tool-maker">${escapeHTML(tool.maker)}</div></div>
+      <div class="tool-title-wrap"><h3 class="tool-title">${TOOL_DETAIL_PATHS[tool.name] ? `<a class="tool-detail-link" href="${TOOL_DETAIL_PATHS[tool.name]}">${escapeHTML(tool.name)} <span aria-hidden="true">↗</span></a>` : escapeHTML(tool.name)}</h3><div class="tool-maker">${escapeHTML(tool.maker)}</div></div>
       <button class="save-tool" type="button" data-save="${escapeHTML(tool.name)}" aria-label="${saved ? "Remove" : "Save"} ${escapeHTML(tool.name)} ${saved ? "from" : "to"} saved tools" aria-pressed="${saved}">${saved ? "♥" : "♡"}</button>
     </div>
     <p class="tool-description">${escapeHTML(tool.description)}</p>
@@ -169,7 +176,52 @@ document.querySelector("#hero-search").addEventListener("submit", event => {
   event.preventDefault();
   query = searchInput.value;
   showAllTools = false;
-  renderTools();
+  const crossPromo = document.getElementById("cross-promo");
+const crossPromoClose = document.getElementById("cross-promo-close");
+if (crossPromo && crossPromoClose) {
+  const dismissedKey = "ai-factory-cross-promo-dismissed";
+  let promoShown = false;
+  const showCrossPromo = () => {
+    if (promoShown) return;
+    promoShown = true;
+    crossPromo.hidden = false;
+    crossPromo.classList.add("is-visible");
+  };
+  try {
+    if (sessionStorage.getItem(dismissedKey) !== "1") {
+      crossPromo.hidden = true;
+      const revealAfterDelay = window.setTimeout(showCrossPromo, 20000);
+      const revealOnScroll = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        if (scrollable > 0 && window.scrollY / scrollable >= 0.55) {
+          window.clearTimeout(revealAfterDelay);
+          showCrossPromo();
+          window.removeEventListener("scroll", revealOnScroll);
+        }
+      };
+      window.addEventListener("scroll", revealOnScroll, {passive:true});
+      crossPromoClose.addEventListener("click", () => {
+        crossPromo.classList.remove("is-visible");
+        crossPromo.hidden = true;
+        window.clearTimeout(revealAfterDelay);
+        window.removeEventListener("scroll", revealOnScroll);
+        try { sessionStorage.setItem(dismissedKey, "1"); } catch {}
+      });
+    } else {
+      crossPromo.hidden = true;
+    }
+  } catch {
+    // If session storage is unavailable, still allow a delayed, dismissible promo.
+    window.setTimeout(showCrossPromo, 20000);
+    crossPromoClose.addEventListener("click", () => {
+      crossPromo.classList.remove("is-visible");
+      crossPromo.hidden = true;
+    });
+  }
+}
+
+
+renderTools();
   document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 });
 searchInput.addEventListener("input", () => { query = searchInput.value; showAllTools = false; renderTools(); });
