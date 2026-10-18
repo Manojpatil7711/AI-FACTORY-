@@ -9,6 +9,7 @@ export async function onRequestGet({ request, env }) {
   if (!env.RAZORPAY_KEY_ID || !env.RAZORPAY_KEY_ID.startsWith("rzp_test_")) missing.push("Razorpay Test Key ID");
   if (!env.RAZORPAY_KEY_SECRET) missing.push("Razorpay Test Key Secret");
   if (!env.RAZORPAY_WEBHOOK_SECRET) missing.push("Razorpay Test Webhook Secret");
+  if (!env.PAYMENT_TEST_ACCESS_CODE) missing.push("Private test access code");
   if (!env.DB) missing.push("Cloudflare D1 binding named DB");
   return json({ ready: missing.length === 0, mode: "test-only", realPaymentsEnabled: false, missing,
     message: missing.length ? "Test checkout is disabled until server-side test settings are configured." : "Test configuration is present. Only the fixed ₹1 test item is enabled." });
