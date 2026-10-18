@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ai-factory-tools.pages.dev/</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/privacy.html</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/terms.html</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/category-writing.html</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/category-design.html</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/category-video.html</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/category-research.html</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/category-coding.html</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/category-audio.html</loc></url>
-  <url><loc>https://ai-factory-tools.pages.dev/category-productivity.html</loc></url>
+  <url><loc>https://ai-factory-tools.pages.dev/</loc><lastmod>2026-10-17</lastmod><priority>1.0</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/privacy.html</loc><lastmod>2026-10-17</lastmod><priority>0.3</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/terms.html</loc><lastmod>2026-10-17</lastmod><priority>0.3</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/category-writing.html</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/category-design.html</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/category-video.html</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/category-research.html</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/category-coding.html</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/category-audio.html</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/category-productivity.html</loc><lastmod>2026-10-17</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-chatgpt.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-claude.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-gemini.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-perplexity.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-canva.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-capcut.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-runway.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-elevenlabs.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-github-copilot.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
+  <url><loc>https://ai-factory-tools.pages.dev/tool-notebooklm.html</loc><lastmod>2026-10-17</lastmod><priority>0.7</priority></url>
 </urlset>
