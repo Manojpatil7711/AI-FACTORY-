@@ -51,7 +51,7 @@ required_ids = {
     "compare-one", "compare-two", "compare-three", "compare-results",
     "prompt-form", "prompt-task", "prompt-audience", "prompt-tone",
     "prompt-details", "prompt-output", "prompt-copy", "prompt-download",
-    "prompt-feedback",
+    "prompt-feedback", "cross-promo", "cross-promo-close",
 }
 missing = sorted(required_ids - page.ids)
 if missing:
@@ -62,6 +62,13 @@ for asset in page.assets:
         continue
     if not (root / asset).is_file():
         raise AssertionError(f"Missing local asset: {asset}")
+
+if "https://gettoolora.in/" not in html or "https://vidzora-pi.vercel.app/" not in html:
+    raise AssertionError("Cross-promotion must link to the intended Toolora and Vidzora sites")
+if "ai-factory-cross-promo-dismissed" not in js or "20000" not in js or "0.55" not in js:
+    raise AssertionError("Cross-promotion must be delayed, dismissible and scroll-aware")
+if "prefers-reduced-motion:reduce" not in (root / "styles.css").read_text(encoding="utf-8"):
+    raise AssertionError("Cross-promotion must respect reduced-motion preferences")
 
 sitemap_path = root / "sitemap.xml"
 if not sitemap_path.is_file():
@@ -76,6 +83,20 @@ if len(sitemap_urls) != len(set(sitemap_urls)):
     raise AssertionError("Duplicate sitemap URLs found")
 if any(not url.startswith("https://ai-factory-tools.pages.dev/") for url in sitemap_urls):
     raise AssertionError("Sitemap must use the stable canonical hostname, not a preview alias")
+
+expected_sitemap_paths = {"", "privacy.html", "terms.html"}
+expected_sitemap_paths.update(path.name for path in root.glob("category-*.html"))
+expected_sitemap_paths.update(path.name for path in root.glob("tool-*.html"))
+if (root / "marketplace.html").is_file():
+    expected_sitemap_paths.add("marketplace.html")
+actual_sitemap_paths = {urlparse(url).path.lstrip("/") for url in sitemap_urls}
+missing_sitemap_paths = sorted(expected_sitemap_paths - actual_sitemap_paths)
+unknown_sitemap_paths = sorted(actual_sitemap_paths - expected_sitemap_paths)
+if missing_sitemap_paths or unknown_sitemap_paths:
+    raise AssertionError(
+        f"Sitemap/page mismatch. Missing: {missing_sitemap_paths}; "
+        f"unexpected: {unknown_sitemap_paths}"
+    )
 
 expected_sitemap_paths = {"", "privacy.html", "terms.html"}
 expected_sitemap_paths.update(path.name for path in root.glob("category-*.html"))
@@ -130,6 +151,25 @@ if bad_categories:
 bad_urls = [name for name, _, _, _, url in records if not url.startswith("https://")]
 if bad_urls:
     raise AssertionError(f"Tool links must use HTTPS: {', '.join(bad_urls)}")
+
+
+tool_pages = sorted(root.glob("tool-*.html"))
+if len(tool_pages) != 10:
+    raise AssertionError(f"Expected 10 priority tool guides, found {len(tool_pages)}")
+for tool_page in tool_pages:
+    content = tool_page.read_text(encoding="utf-8")
+    parser = PageParser()
+    parser.feed(content)
+    if parser.h1_count != 1:
+        raise AssertionError(f"{tool_page.name} must contain exactly one H1, found {parser.h1_count}")
+    if parser.title_count != 1:
+        raise AssertionError(f"{tool_page.name} must contain exactly one title")
+    if not parser.canonical or not parser.canonical.endswith("/" + tool_page.name):
+        raise AssertionError(f"{tool_page.name} must have its own canonical URL")
+    if parser.json_ld_count < 1:
+        raise AssertionError(f"{tool_page.name} must include structured data")
+    if "faq-section" not in content:
+        raise AssertionError(f"{tool_page.name} is missing its FAQ section")
 
 print(
     f"Smoke checks passed: {len(records)} unique tools, required UI IDs, local assets, "
