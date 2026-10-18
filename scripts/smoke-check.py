@@ -191,7 +191,7 @@ if payment_test_page.is_file():
     payment_test_parser.feed(payment_test_content)
     if 'name="robots" content="noindex, nofollow, noarchive"' not in payment_test_content:
         raise AssertionError("payment-test.html must remain noindex")
-    if "Razorpay Test Mode" not in payment_test_content or "Live keys are rejected" not in payment_test_content:
+    if "TEST MODE ONLY" not in payment_test_content or "Live keys are rejected" not in payment_test_content:
         raise AssertionError("Payment test page must clearly state test-only restrictions")
     if "RAZORPAY_KEY_SECRET" in payment_test_content or "RAZORPAY_WEBHOOK_SECRET" in payment_test_content:
         raise AssertionError("Payment secrets must never appear in browser HTML")
