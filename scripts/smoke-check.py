@@ -156,6 +156,34 @@ for tool_page in tool_pages:
     if "faq-section" not in content:
         raise AssertionError(f"{tool_page.name} is missing its FAQ section")
 
+marketplace_page = root / "marketplace-india.html"
+if marketplace_page.is_file():
+    marketplace_content = marketplace_page.read_text(encoding="utf-8")
+    marketplace_parser = PageParser()
+    marketplace_parser.feed(marketplace_content)
+    if marketplace_parser.h1_count != 1:
+        raise AssertionError("marketplace-india.html must contain exactly one H1")
+    if marketplace_parser.title_count != 1:
+        raise AssertionError("marketplace-india.html must contain exactly one title")
+    if not marketplace_parser.canonical or not marketplace_parser.canonical.endswith("/marketplace-india.html"):
+        raise AssertionError("marketplace-india.html must have its own canonical URL")
+    required_marketplace_ids = {
+        "market-search", "market-listings", "seller-preview-form",
+        "seller-preview-result", "market-toast", "market-empty"
+    }
+    missing_marketplace_ids = sorted(required_marketplace_ids - set(marketplace_parser.ids))
+    if missing_marketplace_ids:
+        raise AssertionError(f"Marketplace page is missing required IDs: {missing_marketplace_ids}")
+    if "NOT CONNECTED" not in marketplace_content or "illustrative" not in marketplace_content.lower():
+        raise AssertionError("Marketplace must clearly disclose non-live payments and illustrative listings")
+    marketplace_js = (root / "marketplace-india.js").read_text(encoding="utf-8")
+    if "LOCAL PREVIEW ONLY" not in marketplace_js:
+        raise AssertionError("Seller preview must disclose that it is local-only")
+    if re.search(r"\\b(fetch|XMLHttpRequest)\\s*\\(", marketplace_js):
+        raise AssertionError("Marketplace preview must not submit data over the network")
+    if "localStorage" in marketplace_js:
+        raise AssertionError("Marketplace seller preview must not persist submitted data locally")
+
 print(
     f"Smoke checks passed: {len(records)} unique tools, required UI IDs, local assets, "
     f"7 category pages with canonical/structured data/FAQs, published-page inventory, "
