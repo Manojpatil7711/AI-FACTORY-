@@ -72,12 +72,24 @@ except ET.ParseError as exc:
     raise AssertionError(f"sitemap.xml is not valid XML: {exc}") from exc
 ns = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 sitemap_urls = [node.text for node in sitemap_root.findall("sm:url/sm:loc", ns)]
-if len(sitemap_urls) != 11:
-    raise AssertionError(f"Expected 11 sitemap URLs, found {len(sitemap_urls)}")
 if len(sitemap_urls) != len(set(sitemap_urls)):
     raise AssertionError("Duplicate sitemap URLs found")
 if any(not url.startswith("https://ai-factory-tools.pages.dev/") for url in sitemap_urls):
     raise AssertionError("Sitemap must use the stable canonical hostname, not a preview alias")
+
+expected_sitemap_paths = {"", "privacy.html", "terms.html"}
+expected_sitemap_paths.update(path.name for path in root.glob("category-*.html"))
+expected_sitemap_paths.update(path.name for path in root.glob("tool-*.html"))
+if (root / "marketplace.html").is_file():
+    expected_sitemap_paths.add("marketplace.html")
+actual_sitemap_paths = {urlparse(url).path.lstrip("/") for url in sitemap_urls}
+missing_sitemap_paths = sorted(expected_sitemap_paths - actual_sitemap_paths)
+unknown_sitemap_paths = sorted(actual_sitemap_paths - expected_sitemap_paths)
+if missing_sitemap_paths or unknown_sitemap_paths:
+    raise AssertionError(
+        f"Sitemap/page mismatch. Missing: {missing_sitemap_paths}; "
+        f"unexpected: {unknown_sitemap_paths}"
+    )
 robots = (root / "robots.txt").read_text(encoding="utf-8")
 if "Sitemap: https://ai-factory-tools.pages.dev/sitemap.xml" not in robots:
     raise AssertionError("robots.txt must point to the stable canonical sitemap")
