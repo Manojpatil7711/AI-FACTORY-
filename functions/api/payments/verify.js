@@ -21,7 +21,6 @@ export async function onRequestPost({ request, env }) {
   try {
     const order = await env.DB.prepare("SELECT id, amount_paise, currency, status, razorpay_order_id, razorpay_payment_id FROM payment_orders WHERE id = ?").bind(internalOrderId).first();
     if (!order || order.razorpay_order_id !== providerOrderId || order.amount_paise !== 100 || order.currency !== "INR") return json({ error: "Payment does not match the server-created test order." }, 400);
-    if (order.status === "captured" && order.razorpay_payment_id === paymentId) return json({ verified: true, status: "captured", message: "This test payment was already verified." });
     const expected = await hmacHex(env.RAZORPAY_KEY_SECRET, order.razorpay_order_id + "|" + paymentId);
     if (!safeEqual(expected, signature.toLowerCase())) return json({ error: "Payment signature is invalid." }, 400);
     const response = await fetch("https://api.razorpay.com/v1/payments/" + encodeURIComponent(paymentId), {
