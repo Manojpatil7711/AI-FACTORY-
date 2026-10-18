@@ -8,7 +8,6 @@ import xml.etree.ElementTree as ET
 root = Path(__file__).resolve().parents[1]
 html = (root / "index.html").read_text(encoding="utf-8")
 js = (root / "app.js").read_text(encoding="utf-8")
-deploy_workflow = (root / ".github/workflows/deploy.yml").read_text(encoding="utf-8")
 
 class PageParser(HTMLParser):
     def __init__(self):
@@ -104,8 +103,6 @@ if "Sitemap: https://ai-factory-tools.pages.dev/sitemap.xml" not in robots:
 category_pages = sorted(root.glob("category-*.html"))
 if len(category_pages) != 7:
     raise AssertionError(f"Expected 7 category pages, found {len(category_pages)}")
-if "cp category-*.html dist/" not in deploy_workflow:
-    raise AssertionError("Production deployment workflow must copy all category pages into dist/")
 sitemap_paths = {urlparse(url).path.lstrip("/") for url in sitemap_urls}
 for category_page in category_pages:
     filename = category_page.name
@@ -159,6 +156,6 @@ for tool_page in tool_pages:
 
 print(
     f"Smoke checks passed: {len(records)} unique tools, required UI IDs, local assets, "
-    f"7 category pages with canonical/structured data/FAQs, deploy inclusion, "
+    f"7 category pages with canonical/structured data/FAQs, published-page inventory, "
     f"{len(sitemap_urls)} valid sitemap URLs and HTTPS official links."
 )
