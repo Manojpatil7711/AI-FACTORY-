@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: 22
       - name: Check JavaScript syntax
-        run: node --check app.js
+        run: |
+          node --check app.js
+          node --check marketplace-india.js
+          for file in functions/api/payments/*.js; do node --check "$file"; done
       - name: Run static smoke checks
         run: python3 scripts/smoke-check.py
