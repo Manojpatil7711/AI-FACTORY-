@@ -234,3 +234,6 @@
 @keyframes promo-pulse{0%,100%{opacity:.7;box-shadow:0 0 0 3px #9ce7c012}50%{opacity:1;box-shadow:0 0 0 6px #9ce7c01a}}
 @media(prefers-reduced-motion:reduce){.cross-promo,.cross-promo-item{transition:none}.promo-dot{animation:none}}
 @media(max-width:760px){.cross-promo{right:12px;bottom:12px;padding:15px;width:min(370px,calc(100vw - 24px))}.cross-promo h2{font-size:19px}}
+
+.tool-detail-link{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:color .18s,border-color .18s}
+.tool-detail-link:hover,.tool-detail-link:focus-visible{color:#c9bbff;border-color:#8f7de2}
