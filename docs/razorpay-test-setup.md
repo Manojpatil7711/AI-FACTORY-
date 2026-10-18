@@ -8,18 +8,11 @@
 - Do not enable paid billing or create a paid plan. If the dashboard asks to upgrade or add a payment method, stop and keep checkout disabled.
 - Live transactions and provider fees are out of scope.
 
-## 1. Create the D1 database
-In Cloudflare Dashboard → Workers & Pages → D1 SQL Database, create a database named ai-factory-test-payments only if the account confirms it can be created on the Free plan. This does not require or modify the unrelated Supabase project.
-
-Apply migrations/0001_razorpay_test.sql to this database. Review the selected database name carefully before running the migration; never run it against another application's database.
-
-Then open the existing ai-factory-tools Pages project → Settings → Bindings → Add → D1 database:
-- Variable name: DB
-- Select the dedicated ai-factory-test-payments database
-- Save and redeploy through the existing Git integration.
+## 1. Dedicated test database — provisioned
+A separate Cloudflare D1 database named ai-factory-test-payments has been created on the Free tier, and migrations/0001_razorpay_test.sql has been applied and verified. The existing AI FACTORY Pages project's Preview environment has the D1 binding named DB and PAYMENT_MODE=test configured. The Production environment was left unchanged. The unrelated Supabase project was not touched.
 
 ## 2. Add server-side Test Mode secrets
-In ai-factory-tools → Settings → Variables and Secrets, configure the Preview environment first, then the Production environment only when you intend to test the production hostname. Use encrypted secrets for sensitive values.
+In Cloudflare Dashboard → Workers & Pages → ai-factory-tools → Settings → Variables and Secrets, choose the **Preview** environment and add the four values below. Use encrypted secrets for sensitive values. Do not add these to Production while testing this branch.
 
 - PAYMENT_MODE — non-secret text variable set to exactly test
 - RAZORPAY_KEY_ID — Razorpay Test Mode key ID; must begin with rzp_test_
@@ -30,8 +23,8 @@ In ai-factory-tools → Settings → Variables and Secrets, configure the Previe
 Never use Live Mode keys. Never put secrets in browser code, Git, screenshots, logs or chat. Save settings and let the existing Pages Git integration deploy; do not add a second deployment pipeline.
 
 ## 3. Configure the Razorpay Test Mode webhook
-In Razorpay Dashboard, switch explicitly to Test Mode, open Webhooks and add:
-https://ai-factory-tools.pages.dev/api/payments/webhook
+In Razorpay Dashboard, switch explicitly to Test Mode, open Webhooks and add this Preview endpoint:
+https://feat-india-marketplace-found.ai-factory-tools.pages.dev/api/payments/webhook
 
 Subscribe to:
 - payment.captured
@@ -41,7 +34,7 @@ Subscribe to:
 Set the webhook secret to the same value stored in RAZORPAY_WEBHOOK_SECRET. Configure the webhook in Test Mode only.
 
 ## 4. Run tests
-Open https://ai-factory-tools.pages.dev/payment-test.html after the test branch is merged and the backend settings are configured. The page is marked noindex and excluded from the sitemap.
+Open https://feat-india-marketplace-found.ai-factory-tools.pages.dev/payment-test.html after Preview secrets are saved and a fresh Preview deployment has completed. This is the branch preview URL; it is not the production site. The page is marked noindex and excluded from the sitemap.
 
 Run the fixed ₹1.00 simulated test item and verify:
 - Successful test checkout is confirmed only after the server verifies the signature and queries Razorpay for the payment status.
