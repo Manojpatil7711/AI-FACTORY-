@@ -76,6 +76,10 @@ Never place service-role keys, private API keys or database secrets in browser c
 
 Tool names, descriptions, pricing and feature availability can change. Verify listing details against official sources before presenting them as facts. Do not fabricate ratings, usage counts, benchmarks or endorsements. Sponsored listings should be clearly labeled. External links open with safe `noopener noreferrer` attributes.
 
+## Razorpay test integration scaffold (draft branch)
+
+The marketplace branch adds a noindex test page at payment-test.html, Cloudflare Pages Functions for server-side test order creation/signature verification/webhooks, and a D1 test schema. This scaffold is not active on production unless the branch is reviewed, synchronized with main, merged, and configured with a dedicated D1 database plus encrypted Test Mode secrets. It only permits a fixed simulated ₹1 test item; it cannot sell marketplace listings and has no live-payment or seller-payout support. See docs/razorpay-test-setup.md. Never add payment secrets to Git, browser code or chat.
+
 ## Current limitations
 
 This is a deployed static front-end directory, not yet a production database-backed platform. Search, finder, comparison and prompt templates run in the browser; saved tools persist locally and are not synced between devices. The 10 priority tool guides are linked from directory cards and listed in the 20-URL sitemap. Admin CRUD, authentication, server APIs, real-time pricing verification, user accounts, marketplace transactions and payment integrations are not implemented.
