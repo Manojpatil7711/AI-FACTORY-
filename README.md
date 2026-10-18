@@ -171,3 +171,11 @@ The homepage includes a marketplace planning section explaining the intended ass
 5. Reinvest revenue into verification, customer support, monitoring, backups and reliable infrastructure before expensive growth campaigns.
 
 A checked identity, checked ownership evidence, reviewed listing, and a completed transaction are four different claims. Never combine them into a single blanket “100% verified” badge.
+
+
+## India-first marketplace preview
+
+- `marketplace-india.html` is an additive UI preview for Indian buyers and sellers of AI tools and AI services.
+- Demo cards and prices are illustrative only; seller preview stays in the browser and sends nothing.
+- No live seller accounts, listing publication, orders, UPI or Razorpay payments are enabled.
+- Backend/RLS/payment design is documented in `docs/marketplace-india-plan.md`. The SQL under `supabase/migrations` is a draft only and has not been applied.
