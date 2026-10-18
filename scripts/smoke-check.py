@@ -179,7 +179,7 @@ if marketplace_page.is_file():
     marketplace_js = (root / "marketplace-india.js").read_text(encoding="utf-8")
     if "LOCAL PREVIEW ONLY" not in marketplace_js:
         raise AssertionError("Seller preview must disclose that it is local-only")
-    if re.search(r"\\b(fetch|XMLHttpRequest)\\s*\\(", marketplace_js):
+    if "fetch(" in marketplace_js or "XMLHttpRequest(" in marketplace_js:
         raise AssertionError("Marketplace preview must not submit data over the network")
     if "localStorage" in marketplace_js:
         raise AssertionError("Marketplace seller preview must not persist submitted data locally")
