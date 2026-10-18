@@ -10,7 +10,7 @@ function safeEqual(a, b) {
 export async function onRequestPost({ request, env }) {
   if (!sameOrigin(request)) return json({ error: "Request origin rejected." }, 403);
   if (request.headers.get("content-type")?.split(";")[0].trim() !== "application/json") return json({ error: "JSON request required." }, 415);
-  if (env.PAYMENT_MODE !== "test" || !env.RAZORPAY_KEY_ID?.startsWith("rzp_test_") || !env.RAZORPAY_KEY_SECRET || !env.PAYMENT_TEST_ACCESS_CODE || !env.DB) {
+  if (env.PAYMENT_MODE !== "test" || !env.RAZORPAY_KEY_ID?.startsWith("rzp_test_") || !env.RAZORPAY_KEY_SECRET || !env.RAZORPAY_WEBHOOK_SECRET || !env.PAYMENT_TEST_ACCESS_CODE || !env.DB) {
     return json({ error: "Test checkout is not configured. No payment was created." }, 503);
   }
   let body;
