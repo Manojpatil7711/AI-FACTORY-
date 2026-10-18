@@ -176,52 +176,7 @@ document.querySelector("#hero-search").addEventListener("submit", event => {
   event.preventDefault();
   query = searchInput.value;
   showAllTools = false;
-  const crossPromo = document.getElementById("cross-promo");
-const crossPromoClose = document.getElementById("cross-promo-close");
-if (crossPromo && crossPromoClose) {
-  const dismissedKey = "ai-factory-cross-promo-dismissed";
-  let promoShown = false;
-  const showCrossPromo = () => {
-    if (promoShown) return;
-    promoShown = true;
-    crossPromo.hidden = false;
-    crossPromo.classList.add("is-visible");
-  };
-  try {
-    if (sessionStorage.getItem(dismissedKey) !== "1") {
-      crossPromo.hidden = true;
-      const revealAfterDelay = window.setTimeout(showCrossPromo, 20000);
-      const revealOnScroll = () => {
-        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
-        if (scrollable > 0 && window.scrollY / scrollable >= 0.55) {
-          window.clearTimeout(revealAfterDelay);
-          showCrossPromo();
-          window.removeEventListener("scroll", revealOnScroll);
-        }
-      };
-      window.addEventListener("scroll", revealOnScroll, {passive:true});
-      crossPromoClose.addEventListener("click", () => {
-        crossPromo.classList.remove("is-visible");
-        crossPromo.hidden = true;
-        window.clearTimeout(revealAfterDelay);
-        window.removeEventListener("scroll", revealOnScroll);
-        try { sessionStorage.setItem(dismissedKey, "1"); } catch {}
-      });
-    } else {
-      crossPromo.hidden = true;
-    }
-  } catch {
-    // If session storage is unavailable, still allow a delayed, dismissible promo.
-    window.setTimeout(showCrossPromo, 20000);
-    crossPromoClose.addEventListener("click", () => {
-      crossPromo.classList.remove("is-visible");
-      crossPromo.hidden = true;
-    });
-  }
-}
-
-
-renderTools();
+  renderTools();
   document.querySelector("#explore").scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
 });
 searchInput.addEventListener("input", () => { query = searchInput.value; showAllTools = false; renderTools(); });
@@ -369,6 +324,51 @@ promptDownload.addEventListener("click",()=>{
   link.href = url; link.download = "ai-factory-prompt.txt"; link.click();
   URL.revokeObjectURL(url);
 });
+
+
+const crossPromo = document.getElementById("cross-promo");
+const crossPromoClose = document.getElementById("cross-promo-close");
+if (crossPromo && crossPromoClose) {
+  const dismissedKey = "ai-factory-cross-promo-dismissed";
+  let promoShown = false;
+  const showCrossPromo = () => {
+    if (promoShown) return;
+    promoShown = true;
+    crossPromo.hidden = false;
+    crossPromo.classList.add("is-visible");
+  };
+  try {
+    if (sessionStorage.getItem(dismissedKey) !== "1") {
+      crossPromo.hidden = true;
+      const revealAfterDelay = window.setTimeout(showCrossPromo, 20000);
+      const revealOnScroll = () => {
+        const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+        if (scrollable > 0 && window.scrollY / scrollable >= 0.55) {
+          window.clearTimeout(revealAfterDelay);
+          showCrossPromo();
+          window.removeEventListener("scroll", revealOnScroll);
+        }
+      };
+      window.addEventListener("scroll", revealOnScroll, {passive:true});
+      crossPromoClose.addEventListener("click", () => {
+        crossPromo.classList.remove("is-visible");
+        crossPromo.hidden = true;
+        window.clearTimeout(revealAfterDelay);
+        window.removeEventListener("scroll", revealOnScroll);
+        try { sessionStorage.setItem(dismissedKey, "1"); } catch {}
+      });
+    } else {
+      crossPromo.hidden = true;
+    }
+  } catch {
+    // If session storage is unavailable, still allow a delayed, dismissible promo.
+    window.setTimeout(showCrossPromo, 20000);
+    crossPromoClose.addEventListener("click", () => {
+      crossPromo.classList.remove("is-visible");
+      crossPromo.hidden = true;
+    });
+  }
+}
 
 
 renderTools();
