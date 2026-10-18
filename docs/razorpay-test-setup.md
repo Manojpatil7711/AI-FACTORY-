@@ -25,6 +25,7 @@ In ai-factory-tools → Settings → Variables and Secrets, configure the Previe
 - RAZORPAY_KEY_ID — Razorpay Test Mode key ID; must begin with rzp_test_
 - RAZORPAY_KEY_SECRET — Razorpay Test Mode key secret, encrypted
 - RAZORPAY_WEBHOOK_SECRET — a separate webhook signing secret chosen when configuring the Razorpay Test Mode webhook, encrypted
+- PAYMENT_TEST_ACCESS_CODE — a long random private access code for the test page, encrypted; enter it only on the HTTPS test page
 
 Never use Live Mode keys. Never put secrets in browser code, Git, screenshots, logs or chat. Save settings and let the existing Pages Git integration deploy; do not add a second deployment pipeline.
 
