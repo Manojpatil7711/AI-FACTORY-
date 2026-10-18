@@ -27,6 +27,7 @@ AI FACTORY is a premium-minded AI tools discovery directory. It helps visitors e
 ├── robots.txt
 ├── sitemap.xml
 ├── category-*.html (7 category landing pages)
+├── india-marketplace.html (India-first proposed buyer/seller plans; no live checkout)
 ├── tool-*.html (10 priority tool guides)
 ├── privacy.html / terms.html
 ├── scripts/smoke-check.py

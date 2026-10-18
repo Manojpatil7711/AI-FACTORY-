@@ -39,7 +39,7 @@ class PageParser(HTMLParser):
 
 page = PageParser()
 page.feed(html)
-for legal_page in ("privacy.html", "terms.html"):
+for legal_page in ("privacy.html", "terms.html", "india-marketplace.html"):
     if not (root / legal_page).is_file():
         raise AssertionError(f"Missing required legal page: {legal_page}")
 required_ids = {
@@ -83,7 +83,7 @@ if len(sitemap_urls) != len(set(sitemap_urls)):
 if any(not url.startswith("https://ai-factory-tools.pages.dev/") for url in sitemap_urls):
     raise AssertionError("Sitemap must use the stable canonical hostname, not a preview alias")
 
-expected_sitemap_paths = {"", "privacy.html", "terms.html"}
+expected_sitemap_paths = {"", "privacy.html", "terms.html", "india-marketplace.html"}
 expected_sitemap_paths.update(path.name for path in root.glob("category-*.html"))
 expected_sitemap_paths.update(path.name for path in root.glob("tool-*.html"))
 if (root / "marketplace.html").is_file():
@@ -99,6 +99,22 @@ if missing_sitemap_paths or unknown_sitemap_paths:
 robots = (root / "robots.txt").read_text(encoding="utf-8")
 if "Sitemap: https://ai-factory-tools.pages.dev/sitemap.xml" not in robots:
     raise AssertionError("robots.txt must point to the stable canonical sitemap")
+
+india_page = root / "india-marketplace.html"
+india_html = india_page.read_text(encoding="utf-8")
+india_parser = PageParser()
+india_parser.feed(india_html)
+if india_parser.h1_count != 1 or india_parser.title_count != 1:
+    raise AssertionError("India marketplace page must contain exactly one H1 and title")
+if india_parser.canonical != "https://ai-factory-tools.pages.dev/india-marketplace.html":
+    raise AssertionError("India marketplace page must use its stable canonical URL")
+if india_parser.json_ld_count < 1:
+    raise AssertionError("India marketplace page must include structured data")
+for required_copy in ("Buyer Plus", "Buyer Pro", "Seller Growth", "Seller Premium", "₹299", "₹499", "₹1,499", "not active", "India"):
+    if required_copy not in india_html:
+        raise AssertionError(f"India marketplace plan page missing required disclosure/content: {required_copy}")
+if "india-marketplace.html" not in html:
+    raise AssertionError("Homepage must link to the India marketplace plans")
 
 category_pages = sorted(root.glob("category-*.html"))
 if len(category_pages) != 7:
