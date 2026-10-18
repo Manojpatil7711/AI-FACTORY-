@@ -184,6 +184,32 @@ if marketplace_page.is_file():
     if "localStorage" in marketplace_js:
         raise AssertionError("Marketplace seller preview must not persist submitted data locally")
 
+payment_test_page = root / "payment-test.html"
+if payment_test_page.is_file():
+    payment_test_content = payment_test_page.read_text(encoding="utf-8")
+    payment_test_parser = PageParser()
+    payment_test_parser.feed(payment_test_content)
+    if 'name="robots" content="noindex, nofollow, noarchive"' not in payment_test_content:
+        raise AssertionError("payment-test.html must remain noindex")
+    if "Razorpay Test Mode" not in payment_test_content or "Live keys are rejected" not in payment_test_content:
+        raise AssertionError("Payment test page must clearly state test-only restrictions")
+    if "RAZORPAY_KEY_SECRET" in payment_test_content or "RAZORPAY_WEBHOOK_SECRET" in payment_test_content:
+        raise AssertionError("Payment secrets must never appear in browser HTML")
+    if "payment-test.html" in actual_sitemap_paths:
+        raise AssertionError("Private payment test page must not be listed in the sitemap")
+    for endpoint in (
+        "functions/api/payments/status.js",
+        "functions/api/payments/create-order.js",
+        "functions/api/payments/verify.js",
+        "functions/api/payments/webhook.js",
+    ):
+        if not (root / endpoint).is_file():
+            raise AssertionError(f"Missing payment endpoint: {endpoint}")
+    if not (root / "migrations/0001_razorpay_test.sql").is_file():
+        raise AssertionError("Missing dedicated Razorpay test database migration")
+    if not (root / "docs/razorpay-test-setup.md").is_file():
+        raise AssertionError("Missing Razorpay test setup instructions")
+
 print(
     f"Smoke checks passed: {len(records)} unique tools, required UI IDs, local assets, "
     f"7 category pages with canonical/structured data/FAQs, published-page inventory, "
