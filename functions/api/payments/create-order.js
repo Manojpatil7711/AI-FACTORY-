@@ -10,6 +10,7 @@ export async function onRequestPost({ request, env }) {
   }
   let body;
   try { body = await request.json(); } catch { return json({ error: "Invalid JSON." }, 400); }
+  if (!body || typeof body !== "object" || Array.isArray(body)) return json({ error: "A JSON object is required." }, 400);
   const requestId = typeof body.requestId === "string" ? body.requestId : "";
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(requestId)) return json({ error: "A valid unique request ID is required." }, 400);
   if (body.productId !== "test-item") return json({ error: "Only the fixed test item is available. Marketplace demo listings cannot be purchased." }, 400);
