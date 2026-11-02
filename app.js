@@ -84,10 +84,10 @@ function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
 }
 const TOOL_DETAIL_PATHS = {
-  "ChatGPT":"tool-chatgpt.html", "Claude":"tool-claude.html", "Gemini":"tool-gemini.html",
-  "Perplexity":"tool-perplexity.html", "Canva":"tool-canva.html", "CapCut":"tool-capcut.html",
-  "Runway":"tool-runway.html", "ElevenLabs":"tool-elevenlabs.html",
-  "GitHub Copilot":"tool-github-copilot.html", "NotebookLM":"tool-notebooklm.html"
+  "ChatGPT":"tool-chatgpt", "Claude":"tool-claude", "Gemini":"tool-gemini",
+  "Perplexity":"tool-perplexity", "Canva":"tool-canva", "CapCut":"tool-capcut",
+  "Runway":"tool-runway", "ElevenLabs":"tool-elevenlabs",
+  "GitHub Copilot":"tool-github-copilot", "NotebookLM":"tool-notebooklm"
 };
 
 function toolCard(tool) {
