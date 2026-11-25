@@ -49,6 +49,7 @@ const tools = [
   {name:"Bolt.new",maker:"StackBlitz",category:"Coding",initials:"B",tone:"logo-orange",description:"Prototype web applications from prompts in a browser-based development workspace.",price:"Check plans",url:"https://bolt.new/",featured:48,tags:"coding app builder web prototype"},
   {name:"Krisp",maker:"Krisp",category:"Audio",initials:"Kr",tone:"logo-green",description:"Reduce background noise and improve clarity in calls and recorded audio.",price:"Check plans",url:"https://krisp.ai/",featured:49,tags:"audio noise cancellation meetings voice"},
   {name:"Framer",maker:"Framer",category:"Design",initials:"Fr",tone:"logo-blue",description:"Design and publish responsive websites with visual editing and AI-assisted starting points.",price:"Check plans",url:"https://www.framer.com/",featured:50,tags:"design website builder landing page no code"}
+  {name:"Kite",maker:"Kite",category:"Design",initials:"Ki",tone:"logo-blue",description:"Design UI with your team and AI agents (Claude, ChatGPT, Cursor, Codex) in one editable file, then copy frames as HTML, React or Tailwind.",price:"Free tier",url:"https://kite.new/",featured:51,tags:"design ui mcp agents figma alternative prototype"},
 ];
 
 const grid = document.querySelector("#tool-grid");
